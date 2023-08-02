@@ -1,0 +1,25 @@
+.inputTitle {
+    color: #2D3436;
+
+    font-family: Noto Sans, serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+
+    line-height: 1rem;
+}
+
+.inputContainer {
+    position: relative;
+    width: 15rem;
+}
+
+.inputTag {
+    width: 100%;
+}
+
+.eyeIcon {
+    position: absolute;
+    top: 20%;
+    right: 1%;
+}
