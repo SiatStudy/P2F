@@ -12,7 +12,7 @@ const isPWPattern = (pw) => {
         return false;
     }
 
-    return pw.length >= 8;
+    return !(pw.length >= 8);
 };
 
 export { isPWPattern };

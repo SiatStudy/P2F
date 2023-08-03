@@ -1,0 +1,16 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 2rem 4rem;
+    gap: 3rem;
+
+    width: 30vw;
+    height: 70vh;
+}
+
+.orLine {
+    align-self: center;
+}

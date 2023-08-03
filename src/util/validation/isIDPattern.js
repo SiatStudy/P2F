@@ -6,7 +6,7 @@ const isIDPattern = (id) => {
         return false;
     }
 
-    return id.length >= 8 && id.length < 3 ? false : id;
+    return !(id.length >= 8 && id.length < 3);
 }
 
 export { isIDPattern };
