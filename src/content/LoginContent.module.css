@@ -1,0 +1,28 @@
+.formTag {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loginInput {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.LinkContainer {
+    display: flex;
+    align-self: flex-end;
+    gap: 0.3rem;
+
+    color: #B2BEC3;
+
+    text-align: right;
+    line-height: 1rem; /* 145.455% */
+    letter-spacing: 0.02063rem;
+
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+}
