@@ -1,0 +1,48 @@
+.longBtn {
+    height: 3rem;
+
+    border-radius: 0.4375rem;
+    background: #4D675C;
+
+    color: white;
+
+    font-size: 1.3rem;
+}
+
+.longBtn:disabled {
+    background: gray;
+}
+
+.naverBtn {
+    display: flex;
+    gap: 1rem;
+    height: 3rem;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+    font-size: 1.1rem;
+
+    border-radius: 0.4375rem;
+    background: #03C75A;
+}
+
+.kakaoBtn {
+    display: flex;
+    gap: 1rem;
+    height: 3rem;
+
+    align-items: center;
+    justify-content: center;
+
+    color: black;
+
+    font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+    font-size: 1.1rem;
+
+    border-radius: 0.4375rem;
+    background: #FEE500;
+}

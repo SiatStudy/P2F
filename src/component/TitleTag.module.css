@@ -1,0 +1,12 @@
+.title {
+    text-align: center;
+    line-height: 3rem; /* 114.286% */
+    letter-spacing: -0.0525rem;
+
+    color: #4D675C;
+
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 600;
+}

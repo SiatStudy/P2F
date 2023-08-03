@@ -1,8 +1,21 @@
 .inputTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    align-items: center;
+
+    width: 100%;
+}
+
+.Title {
+    padding-left: 0.5rem;
+    align-self: flex-start;
+
     color: #2D3436;
 
-    font-family: Noto Sans, serif;
-    font-size: 0.875rem;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 500;
 
@@ -10,16 +23,43 @@
 }
 
 .inputContainer {
+    display: flex;
     position: relative;
-    width: 15rem;
+    margin-top: 0.3rem;
+
+    width: 100%;
 }
 
 .inputTag {
-    width: 100%;
+    flex: 1;
+    padding: 0.3rem 0.7rem;
+
+    align-self: center;
+
+    width: auto;
+    height: 2rem;
+
+    font-size: 1.3rem;
+
+    border: 2px solid #CCC;
+    border-radius: 0.4375rem;
 }
 
 .eyeIcon {
     position: absolute;
-    top: 20%;
-    right: 1%;
+
+    top: 35%;
+    right: 2%;
+
+    font-size: 1rem;
+}
+
+.failP {
+    margin-top: 0.2rem;
+    padding-left: 0.5rem;
+
+    align-self: flex-start;
+
+    font-size: 1rem;
+    color: red;
 }

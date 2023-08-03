@@ -7,8 +7,7 @@ import { isEmailPattern } from "../util/validation/isEmailPattern";
 import { isIDPattern } from "../util/validation/isIDPattern";
 import { isPWPattern } from "../util/validation/isPWPattern";
 
-export const InputTag = ({ mode, setValue, validation }) => {
-    const [ validate, setValidate ] = useState(false);
+export const InputTag = ({ mode, setValue, validate, validation }) => {
     const [ showPassword, setShowPassword ] = useState(false);
 
     const inputObj = {
@@ -17,9 +16,9 @@ export const InputTag = ({ mode, setValue, validation }) => {
             text : "이메일 : ",
             type : "email",
             placeholder : "이메일을 입력하세요.",
+            errorText : "이메일 형식이 맞지 않습니다.",
             func : data => {
                 setValue(data);
-                setValidate(isEmailPattern(data));
             }
         },
         "code" : {
@@ -36,9 +35,9 @@ export const InputTag = ({ mode, setValue, validation }) => {
             text : "아이디 : ",
             type : "text",
             placeholder : "아이디를 입력하세요.",
+            errorText : "아이디 형식이 맞지 않습니다.",
             func : data => {
                 setValue(data);
-                setValidate(isIDPattern(data));
             }
         },
         "pw" : {
@@ -46,15 +45,16 @@ export const InputTag = ({ mode, setValue, validation }) => {
             text : "비밀번호 : ",
             type : "text",
             placeholder : "비밀번호를 입력하세요.",
+            errorText : "비밀번호 형식이 맞지 않습니다.",
             func : data => {
                 setValue(data);
-                setValidate(isPWPattern(data));
             }
         },
         "pwCorrect" : {
             style : "pwCorrectInput",
             text : "비밀번호 확인 : ",
             type : "text",
+            errorText : "비밀번호가 일치하지 않습니다.",
             func : data => {
                 setValue(data);
             }
@@ -67,8 +67,7 @@ export const InputTag = ({ mode, setValue, validation }) => {
 
 
     return (
-        <>
-            <p className={styles.inputTitle}>{inputObj[mode].text}</p>
+        <label className={styles.inputTitle}><span className={styles.Title}>{inputObj[mode].text}</span>
             <div className={styles.inputContainer}>
                 <input
                     className={styles.inputTag}
@@ -78,28 +77,31 @@ export const InputTag = ({ mode, setValue, validation }) => {
                         inputObj[mode].type
                     )}
                     placeholder={inputObj[mode].placeholder}
-                    /*onChange={({ target }) => { inputObj[mode].func(target.value)} }*/
+                    onChange={({ target }) => { inputObj[mode].func(target.value)} }
                 />
+
                 {mode === "pw" || mode === "pwCorrect" ? (
                     showPassword ? (
-                        <FontAwesomeIcon icon={faEye} className={styles.eyeIcon} onClick={togglePasswordVisibility}/>
-                    ) : (
                         <FontAwesomeIcon icon={faEyeSlash} className={styles.eyeIcon} onClick={togglePasswordVisibility}/>
+                    ) : (
+                        <FontAwesomeIcon icon={faEye} className={styles.eyeIcon} onClick={togglePasswordVisibility}/>
                     )
                 ) : null }
             </div>
+
             {mode !== "code" && mode !== "pwCorrect" ? (
-                validate ? (
-                    <p className={"trueP"}>조건이 만족했습니다.</p>
-                ) : (
-                    <p className={"failP"}>조건이 틀렸습니다.</p>
+                !(inputObj[mode].errorText) ? null : (
+                    validate ? null : (
+                        <p className={styles.failP}>{inputObj[mode].errorText}</p>
+                    )
                 )
             ) : null }
+
             {mode === "pwCorrect" ? (
                 !validation ? (
                     <p className={"failP"}>비밀번호가 일치하지 않습니다.</p>
                 ) : null
             ) : null }
-        </>
+        </label>
     )
 }

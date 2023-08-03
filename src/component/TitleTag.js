@@ -1,3 +1,5 @@
+import styles from "./TitleTag.module.css";
+
 export const TitleTag = ({ mode }) => {
     const textObj = {
         "email" : {
@@ -12,6 +14,6 @@ export const TitleTag = ({ mode }) => {
     };
 
     return (
-        <p className={"title"} >{textObj[mode].text}</p>
+        <p className={styles.title} >{textObj[mode].text}</p>
     )
 };
