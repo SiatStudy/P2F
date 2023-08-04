@@ -1,0 +1,32 @@
+.findContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+
+    width: 35vw;
+}
+
+.idFindContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+}
+
+.pwFindContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.text{
+    display: flex;
+    gap: 0.6rem;
+
+    align-self: center;
+    font-size: 1.1rem;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.textId {
+    color: red;
+}

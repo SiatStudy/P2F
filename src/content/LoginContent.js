@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 import { isIDPattern } from "../util/validation/isIDPattern";
 import { isPWPattern } from "../util/validation/isPWPattern";
@@ -22,16 +22,19 @@ export const LoginContent = () => {
             setOnBtn(true);
         }
 
-        if(document.cookie.split("=")[1]) {
-            console.log(document.cookie.split("=")[1]);
-            setValidate(false);
+        const bool = document.cookie.split("=")[1];
+        if(!(typeof bool === "undefined")) {
+            setValidate(bool === "true");
         }
+        document.cookie = "validate" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }, [id, pw]);
 
     const loginFunc = () => {
-        alert("PW " + pw + isPWPattern(pw) + "ID " + id + isIDPattern(id));
-        isIDPattern(id) && isPWPattern(pw) ?
-            document.cookie = "validate=true" : document.cookie = "validate=false"
+        isIDPattern(id) && isPWPattern(pw) ? (
+            alert("APIS 구현중입니다.")
+        ) : (
+            document.cookie = "validate=false"
+        );
     }
 
     return (
