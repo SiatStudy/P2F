@@ -6,6 +6,7 @@
 
     color: white;
 
+    font-family: 'Noto Sans', sans-serif;
     font-size: 1.3rem;
 }
 
@@ -45,4 +46,11 @@
 
     border-radius: 0.4375rem;
     background: #FEE500;
+}
+
+.shortBtn {
+    flex: 1;
+    border-radius: 7px;
+    border: 1px solid #C2BEBE;
+    background: #FFF;
 }

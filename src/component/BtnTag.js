@@ -5,19 +5,28 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
         "longBtn" : {
             style : styles.longBtn,
             "pwFind" : {
+                type : "submit",
                 text : "비밀번호 찾기"
             },
             "idFind" : {
+                type : "submit",
                 text : "ID 찾기"
             },
             "pwChange" : {
+                type : "submit",
                 text : "비밀번호 변경"
             },
             "login" : {
+                type : "submit",
                 text : "로그인"
             },
             "toLogin" : {
+                type : "button",
                 text : "로그인 하러가기"
+            },
+            "signup" : {
+                type : "submit",
+                text : "회원 가입"
             },
             "naver" : {
                 style : styles.naverBtn,
@@ -37,20 +46,32 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
             }
         },
         "shortBtn" : {
-
+            style : styles.shortBtn,
+            "dupleBtn" : {
+                type : "button",
+                text : "중복"
+            },
+            "reqBtn" : {
+                type : "button",
+                text : "요청"
+            },
+            "checkBtn" : {
+                type : "button",
+                text : "확인"
+            }
         }
     };
 
     return (
         <>
             {btnObj[type][mode].icon ? (
-                <button type={"submit"} className={btnObj[type][mode].style} onClick={btnObj[type][mode].func}>
+                <button type={"button"} className={btnObj[type][mode].style} onClick={btnObj[type][mode].func}>
                     <img src={`${process.env.PUBLIC_URL}/asset/icon/${btnObj[type][mode].icon}`} alt={"icon Img"} />
                     <p>{btnObj[type][mode].text}</p>
                 </button>
             ) : (
                 <button
-                    type={"submit"}
+                    type={btnObj[type][mode].type}
                     className={btnObj[type].style}
                     disabled={isdisabled}
                     onClick={event}

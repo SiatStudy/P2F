@@ -1,18 +1,26 @@
+import {BtnTag} from "./BtnTag";
 import styles from "./InputTag.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from "react";
-import { isEmailPattern } from "../util/validation/isEmailPattern";
-import { isIDPattern } from "../util/validation/isIDPattern";
-import { isPWPattern } from "../util/validation/isPWPattern";
 
-export const InputTag = ({ mode, setValue, validate, validation }) => {
+export const InputTag = ({ mode, setValue, validate, check, checkType, disabled, event }) => {
     const [ showPassword, setShowPassword ] = useState(false);
 
     const inputObj = {
+        "name" : {
+            style : styles.inputTag,
+            text : "닉네임 : ",
+            type : "text",
+            placeholder : "닉네임을 입력하세요.",
+            errorText : "닉네임의 조건에 맞지 않습니다.",
+            func : data => {
+                setValue(data);
+            }
+        },
         "email" : {
-            style : "emailInput",
+            style : styles.inputTag,
             text : "이메일 : ",
             type : "email",
             placeholder : "이메일을 입력하세요.",
@@ -22,7 +30,7 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
             }
         },
         "code" : {
-            style : "codeInput",
+            style : styles.inputTag,
             text : "인증번호 : ",
             type : "number",
             placeholder : "인증번호를 입력하세요.",
@@ -31,7 +39,7 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
             }
         },
         "id" : {
-            style : "idInput",
+            style : styles.inputTag,
             text : "아이디 : ",
             type : "text",
             placeholder : "아이디를 입력하세요.",
@@ -41,7 +49,7 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
             }
         },
         "pw" : {
-            style : "pwInput",
+            style : styles.inputTag,
             text : "비밀번호 : ",
             type : "text",
             placeholder : "비밀번호를 입력하세요.",
@@ -51,8 +59,9 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
             }
         },
         "pwCorrect" : {
-            style : "pwCorrectInput",
+            style : styles.inputTag,
             text : "비밀번호 확인 : ",
+            placeholder : "비밀번호를 다시 입력하세요.",
             type : "text",
             errorText : "비밀번호가 일치하지 않습니다.",
             func : data => {
@@ -68,9 +77,9 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
 
     return (
         <label className={styles.inputTitle}><span className={styles.Title}>{inputObj[mode].text}</span>
-            <div className={styles.inputContainer}>
+            <div className={`${check ? styles.inputBtnContainer : styles.inputContainer}`}>
                 <input
-                    className={styles.inputTag}
+                    className={inputObj[mode].style}
                     type={mode === "pw" || mode === "pwCorrect" ? (
                         showPassword ? "password" : "text"
                     ) : (
@@ -82,25 +91,27 @@ export const InputTag = ({ mode, setValue, validate, validation }) => {
 
                 {mode === "pw" || mode === "pwCorrect" ? (
                     showPassword ? (
-                        <FontAwesomeIcon icon={faEyeSlash} className={styles.eyeIcon} onClick={togglePasswordVisibility}/>
+                        <FontAwesomeIcon icon={faEyeSlash} className={check ? styles.eyeIconBtn : styles.eyeIcon} onClick={togglePasswordVisibility}/>
                     ) : (
-                        <FontAwesomeIcon icon={faEye} className={styles.eyeIcon} onClick={togglePasswordVisibility}/>
+                        <FontAwesomeIcon icon={faEye} className={check ? styles.eyeIconBtn : styles.eyeIcon} onClick={togglePasswordVisibility}/>
                     )
+                ) : null }
+
+                {check ? (
+                    <BtnTag type={"shortBtn"} mode={checkType} isdisabled={disabled} event={event} />
                 ) : null }
             </div>
 
             {mode !== "code" && mode !== "pwCorrect" ? (
-                !(inputObj[mode].errorText) ? null : (
-                    validate ? null : (
-                        <p className={styles.failP}>{inputObj[mode].errorText}</p>
-                    )
+                validate ? null : (
+                    <p className={styles.failP}>{inputObj[mode].errorText}</p>
                 )
             ) : null }
 
             {mode === "pwCorrect" ? (
-                !validation ? (
-                    <p className={"failP"}>비밀번호가 일치하지 않습니다.</p>
-                ) : null
+                validate ? null : (
+                    <p className={styles.failP}>비밀번호가 일치하지 않습니다.</p>
+                )
             ) : null }
         </label>
     )

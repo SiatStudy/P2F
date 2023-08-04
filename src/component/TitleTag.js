@@ -8,7 +8,7 @@ export const TitleTag = ({ mode }) => {
         "login" : {
             text : "로그인"
         },
-        "join" : {
+        "signup" : {
             text : "회원가입"
         }
     };
