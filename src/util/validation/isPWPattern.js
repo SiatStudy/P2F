@@ -8,7 +8,7 @@ const isPWPattern = (pw) => {
         return false;
     }
 
-    if (!(unicode.test(pw) && english.test(pw) && number.test(pw))) {
+    if (!(unicode.test(pw) || english.test(pw) || number.test(pw))) {
         return false;
     }
 
