@@ -1,0 +1,83 @@
+.noneNav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.7rem 2rem;
+
+    justify-content: space-between;
+    align-self: center;
+
+    width: 100vw;
+    height: 3.8rem;
+}
+
+.whiteNav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.7rem 2rem;
+
+    justify-content: space-between;
+    align-self: center;
+
+    width: 100vw;
+    height: 3.8rem;
+
+    background-color: white;
+}
+
+.navDiv {
+    display: flex;
+    gap: 2rem;
+}
+
+.quickDiv {
+    display: flex;
+    gap: 2rem;
+
+    align-self: center;
+    justify-content: flex-end;
+}
+
+.menuList {
+    display: flex;
+    gap: 2rem;
+
+    align-self: center;
+    text-align: center;
+}
+
+.quickList {
+    display: flex;
+    gap: 2rem;
+
+    align-self: center;
+    justify-self: end;
+}
+
+.whiteText {
+    color: white;
+
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.whiteIcon {
+    color: white;
+}
+
+.colorText {
+    color: #4D675C;
+
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.colorIcon {
+    color: #4D675C;
+}
+
+.timeIcon {
+    display: flex;
+    gap: 2rem;
+
+    align-self: center;
+    justify-self: end;
+}
+

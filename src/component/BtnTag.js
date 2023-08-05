@@ -46,18 +46,25 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
             }
         },
         "shortBtn" : {
-            style : styles.shortBtn,
             "dupleBtn" : {
+                style : styles.shortBtn,
                 type : "button",
                 text : "중복"
             },
             "reqBtn" : {
+                style : styles.shortBtn,
                 type : "button",
                 text : "요청"
             },
             "checkBtn" : {
+                style : styles.shortBtn,
                 type : "button",
                 text : "확인"
+            },
+            "bookBtn" : {
+                style : styles.smallBtn,
+                type : "button",
+                text : "예약하기"
             }
         }
     };
@@ -72,7 +79,7 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
             ) : (
                 <button
                     type={btnObj[type][mode].type}
-                    className={btnObj[type].style}
+                    className={btnObj[type][mode].style}
                     disabled={isdisabled}
                     onClick={event}
                 >

@@ -54,3 +54,21 @@
     border: 1px solid #C2BEBE;
     background: #FFF;
 }
+
+.smallBtn {
+    width: 6rem;
+    height: 2rem;
+
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    color: #4D4545;
+
+    text-align: center;
+    line-height: 150%; /* 22.5px */
+    letter-spacing: 1.5px;
+
+    border-radius: 7px;
+    background: #DBD2C3;
+}
