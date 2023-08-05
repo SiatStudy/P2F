@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 
-import { isIDPattern } from "../util/validation/isIDPattern";
-import { isPWPattern } from "../util/validation/isPWPattern";
+import { isIDPattern } from "../../util/validation/isIDPattern";
+import { isPWPattern } from "../../util/validation/isPWPattern";
 
-import { BtnTag } from "../component/BtnTag";
-import { LinkTag } from "../component/LinkTag";
-import { InputTag } from "../component/InputTag";
+import { BtnTag } from "../../component/BtnTag";
+import { LinkTag } from "../../component/LinkTag";
+import { InputTag } from "../../component/InputTag";
 
 import styles from "./LoginContent.module.css";
 

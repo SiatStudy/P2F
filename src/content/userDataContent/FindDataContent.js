@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { BtnTag } from "../component/BtnTag";
-import { InputTag } from "../component/InputTag";
-import { LabelTag } from "../component/LabelTag";
+import { BtnTag } from "../../component/BtnTag";
+import { InputTag } from "../../component/InputTag";
+import { LabelTag } from "../../component/LabelTag";
 
-import { isEmailPattern } from "../util/validation/isEmailPattern";
-import { isIDPattern } from "../util/validation/isIDPattern";
+import { isEmailPattern } from "../../util/validation/isEmailPattern";
+import { isIDPattern } from "../../util/validation/isIDPattern";
 
 import styles from "./FindDataContent.module.css"
 

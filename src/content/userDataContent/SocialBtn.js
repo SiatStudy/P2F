@@ -1,4 +1,4 @@
-import { BtnTag } from "../component/BtnTag";
+import { BtnTag } from "../../component/BtnTag";
 import styles from "./SocialBtn.module.css";
 
 export const SocialBtn = () => {

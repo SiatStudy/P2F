@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { BtnTag } from "../component/BtnTag";
-import { InputTag } from "../component/InputTag";
+import { BtnTag } from "../../component/BtnTag";
+import { InputTag } from "../../component/InputTag";
 
-import { isEmailPattern } from "../util/validation/isEmailPattern";
-import { isIDPattern } from "../util/validation/isIDPattern";
-import { isNickNamePattern } from "../util/validation/isNickNamePattern";
-import { isPWPattern } from "../util/validation/isPWPattern";
+import { isEmailPattern } from "../../util/validation/isEmailPattern";
+import { isIDPattern } from "../../util/validation/isIDPattern";
+import { isNickNamePattern } from "../../util/validation/isNickNamePattern";
+import { isPWPattern } from "../../util/validation/isPWPattern";
 
 import styles from "./SignupContent.module.css";
 

@@ -1,0 +1,27 @@
+.footerHead {
+    display: flex;
+    padding: 0 3rem 5rem 3rem;
+
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid white;
+}
+
+.footerHeadNav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footerFoot {
+    display: flex;
+    margin-top: 3rem;
+
+    justify-content: space-between;
+}
+
+.footerFootNav {
+    display: flex;
+    gap: 2rem;
+}

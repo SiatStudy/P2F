@@ -1,0 +1,16 @@
+.slider-items {
+    position: relative;
+}
+
+.slick-dots {
+    bottom: 1rem;
+}
+
+.slick-dots li.slick-active button:before {
+    color: white;
+    font-size: 12px;
+}
+
+.slick-dots li button:before {
+    color: white;
+}
