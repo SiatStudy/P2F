@@ -1,8 +1,8 @@
+import { Logo } from "./Logo";
+
 import { faSearch, faTimes, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Navigator.module.css";
-
-import { Logo } from "./Logo";
 
 export const Navigator = ({ mode, searchMode, setSearchMode }) => {
     const styleMode = {

@@ -10,3 +10,14 @@
     font-style: normal;
     font-weight: 600;
 }
+
+.sectionText {
+    color: #4D675C;
+    text-align: center;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 2.3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 60px */
+    letter-spacing: -0.8px;
+}

@@ -1,0 +1,49 @@
+.cardOfProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: 26vw;
+}
+
+.cardUi {
+    display: flex;
+    padding: 0 0.3rem;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.starText {
+    display: flex;
+    gap: 0.4rem;
+
+    color: #484848;
+    font-family: "Noto Sans", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.locationText {
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+}
+
+.payText {
+    color: #848484;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.825px;
+}
+
+.starIcon {
+    color: #FFA800;
+}

@@ -1,4 +1,5 @@
-import {BtnTag} from "./BtnTag";
+import { BtnTag } from "./BtnTag";
+
 import styles from "./CardOfSwiper.module.css";
 
 export const CardOfSwiper = ({ data, key }) => {

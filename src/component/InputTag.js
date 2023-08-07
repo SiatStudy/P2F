@@ -1,9 +1,10 @@
-import {BtnTag} from "./BtnTag";
-import styles from "./InputTag.module.css";
+import { useState } from "react";
+
+import { BtnTag } from "./BtnTag";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
-import { useState } from "react";
+import styles from "./InputTag.module.css";
 
 export const InputTag = ({ mode, setValue, validate, check, checkType, disabled, event }) => {
     const [ showPassword, setShowPassword ] = useState(false);

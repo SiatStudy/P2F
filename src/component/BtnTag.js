@@ -1,30 +1,35 @@
 import styles from "./BtnTag.module.css";
 
-export const BtnTag = ({ type, mode, isdisabled, event }) => {
+export const BtnTag = ({ type, mode, data, isdisabled, event }) => {
     const btnObj = {
         "longBtn" : {
-            style : styles.longBtn,
             "pwFind" : {
+                style : styles.longBtn,
                 type : "submit",
                 text : "비밀번호 찾기"
             },
             "idFind" : {
+                style : styles.longBtn,
                 type : "submit",
                 text : "ID 찾기"
             },
             "pwChange" : {
+                style : styles.longBtn,
                 type : "submit",
                 text : "비밀번호 변경"
             },
             "login" : {
+                style : styles.longBtn,
                 type : "submit",
                 text : "로그인"
             },
             "toLogin" : {
+                style : styles.longBtn,
                 type : "button",
                 text : "로그인 하러가기"
             },
             "signup" : {
+                style : styles.longBtn,
                 type : "submit",
                 text : "회원 가입"
             },
@@ -65,6 +70,12 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
                 style : styles.smallBtn,
                 type : "button",
                 text : "예약하기"
+            },
+            "locationBtn" : {
+                style : styles.locationBtn,
+                type : "button",
+                text : `${data}`,
+                src : `${process.env.PUBLIC_URL}/asset/img/main/MainPage_지역별_${data}.png`
             }
         }
     };
@@ -78,6 +89,7 @@ export const BtnTag = ({ type, mode, isdisabled, event }) => {
                 </button>
             ) : (
                 <button
+                    style={btnObj[type][mode].src ? { backgroundImage:`url(${btnObj[type][mode].src })`} : null}
                     type={btnObj[type][mode].type}
                     className={btnObj[type][mode].style}
                     disabled={isdisabled}

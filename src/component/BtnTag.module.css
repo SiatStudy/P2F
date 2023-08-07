@@ -72,3 +72,16 @@
     border-radius: 7px;
     background: #DBD2C3;
 }
+
+.locationBtn {
+    width: 161.97px;
+    height: 161.97px;
+    flex-shrink: 0;
+
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.3rem;
+
+    color: white;
+
+    border-radius: 80.985px;
+}
