@@ -1,11 +1,11 @@
-import Slider from "react-slick";
+import { CardOfSwiper } from "../../component/CardOfSwiper";
 
 import { swiperData } from "../../json/swiperData";
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {CardOfSwiper} from "../../component/CardOfSwiper";
 import "./SwiperContent.css";
+import Slider from "react-slick";
 
 export const SwiperContent = () => {
     const settings = {
@@ -19,12 +19,10 @@ export const SwiperContent = () => {
     };
 
     return (
-        <section>
-            <Slider { ...settings }>
-                {swiperData.map(data => {
-                    return <CardOfSwiper data={data} key={data.id} />
-                })}
-            </Slider>
-        </section>
+        <Slider { ...settings }>
+            {swiperData.map(data => {
+                return <CardOfSwiper data={data} key={data.id} />
+            })}
+        </Slider>
     )
 }

@@ -1,13 +1,12 @@
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Navigator } from "../../component/Navigator";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import styles from "./HeaderNav.module.css"
 
 export const HeaderNav = ({ headerMode }) => {
-    const [ mode, setMode ] = useState(typeof headerMode === "undefined" ? true : headerMode);
     const [ searchMode, setSearchMode ] = useState(false);
 
     const searchFunc = () => {
@@ -26,7 +25,7 @@ export const HeaderNav = ({ headerMode }) => {
                 </nav>
             ) : (
                 <nav>
-                    <Navigator mode={mode} setSearchMode={setSearchMode} />
+                    <Navigator mode={headerMode} setSearchMode={setSearchMode} />
                 </nav>
             )}
         </>

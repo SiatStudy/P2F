@@ -1,0 +1,36 @@
+.locationSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    padding: 5rem;
+}
+
+.sectionTitle {
+    display: flex;
+    margin-top: 3.5rem;
+
+    align-self: flex-start;
+
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: -0.8px;
+}
+
+.locationDiv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem;
+    gap: 1rem;
+
+    justify-content: center;
+    justify-items: center;
+
+    border-top: 1px solid #A6A6A6;;
+
+    width: 90vw;
+}

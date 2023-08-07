@@ -1,0 +1,15 @@
+.productList {
+    display: flex;
+    padding: 2rem 1rem;
+
+    place-items: center;
+    place-content: center;
+}
+
+.mainProductSection {
+    display: flex;
+    gap: 3rem;
+
+    justify-content: center;
+    align-items: center;
+}
