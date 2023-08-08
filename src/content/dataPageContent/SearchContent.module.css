@@ -1,0 +1,8 @@
+.searchContent {
+    display: flex;
+    flex-direction: column;
+    padding: 7rem 5rem 5rem 5rem;
+    gap: 2rem;
+
+    place-content: center;
+}

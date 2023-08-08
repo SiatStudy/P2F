@@ -15,11 +15,13 @@ export const StayContent = () => {
     return (
         <section className={styles.mainProductSection}>
             <TitleTag mode={"stay"} />
-            <div>
+            <div className={styles.contentDiv}>
                 <Label2Tag data={stay} selectData={selectData} setSelectData={setSelectData} />
                 <div className={styles.productList}>
                     { stayJson.map(({ title, src, text}, index) => {
-                        if(title === selectData) {
+                        let count = 0;
+                        if(title === selectData && count > 3) {
+                            count++;
                             return <CardOfProduct key={index} item={src} data={text} />
                         }
                     }) }

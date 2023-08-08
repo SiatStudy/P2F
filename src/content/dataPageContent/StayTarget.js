@@ -3,8 +3,8 @@ import { TitleTag } from "../../component/TitleTag";
 
 import styles from "./LocationTarget.module.css";
 
-export const LocationTarget = ({ selected, setEvent }) => {
-    const categories = ["서울", "경기", "부산", "제주", "강원", "전라", "경상"];
+export const StayTarget = ({ selected, setEvent }) => {
+    const categories = ["모텔", "호텔", "게스트 하우스", "펜션"];
 
     return (
         <div className={styles.targetTitle}>

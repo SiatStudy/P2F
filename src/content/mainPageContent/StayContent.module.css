@@ -1,6 +1,7 @@
 .productList {
     display: flex;
     padding: 2rem 1rem;
+    gap: 2.4rem;
 
     place-items: center;
     place-content: center;
@@ -12,4 +13,10 @@
 
     justify-content: center;
     align-items: center;
+}
+
+.contentDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
 }

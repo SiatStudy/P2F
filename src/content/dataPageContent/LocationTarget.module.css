@@ -1,0 +1,16 @@
+.targetTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 7rem 3rem 1rem 3rem;
+
+    width: 100%;
+}
+
+.itemsList {
+    display: flex;
+    gap: 1rem;
+
+    justify-content: space-around;
+}
