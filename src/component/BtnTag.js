@@ -1,6 +1,6 @@
 import styles from "./BtnTag.module.css";
 
-export const BtnTag = ({ type, mode, data, isdisabled, event }) => {
+export const BtnTag = ({ type, mode, data, isdisabled, event, selected }) => {
     const btnObj = {
         "longBtn" : {
             "pwFind" : {
@@ -76,6 +76,11 @@ export const BtnTag = ({ type, mode, data, isdisabled, event }) => {
                 type : "button",
                 text : `${data}`,
                 src : `${process.env.PUBLIC_URL}/asset/img/main/MainPage_지역별_${data}.png`
+            },
+            "categoryBtn" : {
+                style : selected ? styles.selectedCategoryBtn : styles.noneCategoryBtn,
+                type : "button",
+                text : `${data}`
             }
         }
     };

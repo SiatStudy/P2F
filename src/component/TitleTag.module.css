@@ -21,3 +21,15 @@
     line-height: 150%; /* 60px */
     letter-spacing: -0.8px;
 }
+
+.pageTitle {
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 60px */
+    letter-spacing: -0.8px;
+
+    border-bottom: 1px solid #A6A6A6;
+}

@@ -85,3 +85,29 @@
 
     border-radius: 80.985px;
 }
+
+.selectedCategoryBtn {
+    width: 5.5rem;
+    height: 5.5rem;
+
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.3rem;
+
+    color: white;
+
+    border-radius: 100px;
+    background: #4D675C;
+}
+
+.noneCategoryBtn {
+    width: 5.5rem;
+    height: 5.5rem;
+
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.3rem;
+
+    color: #4D675C;
+
+    border-radius: 100px;
+    background: #E8E6DA;
+}

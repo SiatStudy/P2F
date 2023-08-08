@@ -21,6 +21,42 @@ export const TitleTag = ({ mode }) => {
         "stay" : {
             style : styles.sectionText,
             text : "여행의 휴식 어느 곳에서 쉬시겠습니까?"
+        },
+        "locationTitle" : {
+            style : styles.pageTitle,
+            text : "지역 종류"
+        },
+        "StayTitle" : {
+            style : styles.pageTitle,
+            text : "숙소 종류"
+        },
+        "LikeTitle" : {
+            style : styles.pageTitle,
+            text : "찜한 목록"
+        },
+        "PayHistoryTitle" : {
+            style : styles.pageTitle,
+            text : "결제 내역"
+        },
+        "PayTitle" : {
+            style : styles.pageTitle,
+            text : "결제"
+        },
+        "SearchTitle" : {
+            style : styles.pageTitle,
+            text : "검색 결과"
+        },
+        "MyPageTitle" : {
+            style : styles.pageTitle,
+            text : "마이페이지"
+        },
+        "UserTitle" : {
+            style : styles.pageTitle,
+            text : "회원 정보"
+        },
+        "VersionTitle" : {
+            style : styles.pageTitle,
+            text : "버전"
         }
     };
 
