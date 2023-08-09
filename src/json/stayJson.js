@@ -87,7 +87,7 @@ export const stayJson = [
     },
     {
         title : "게스트 하우스",
-        locate : "서울",
+        locate : "대전",
         src : `${process.env.PUBLIC_URL}/asset/img/main/MainPage_추천_img.jpg`,
         text : {
             star : 10.0,
@@ -98,7 +98,7 @@ export const stayJson = [
     },
     {
         title : "게스트 하우스",
-        locate : "서울",
+        locate : "인천",
         src : `${process.env.PUBLIC_URL}/asset/img/main/MainPage_추천_img.jpg`,
         text : {
             star : 10.0,
@@ -109,7 +109,7 @@ export const stayJson = [
     },
     {
         title : "게스트 하우스",
-        locate : "서울",
+        locate : "경북",
         src : `${process.env.PUBLIC_URL}/asset/img/main/MainPage_추천_img.jpg`,
         text : {
             star : 10.0,
