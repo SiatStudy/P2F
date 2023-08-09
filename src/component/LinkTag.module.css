@@ -1,0 +1,12 @@
+.link {
+    text-decoration: none;
+    color: #B2BEC3;
+    font-weight: 600;
+}
+
+.signupLink {
+    text-decoration: none;
+    color: #4D675C;
+    font-weight: 700;
+    line-height: 18px;
+}

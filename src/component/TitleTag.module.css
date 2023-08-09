@@ -33,3 +33,13 @@
 
     border-bottom: 1px solid #A6A6A6;
 }
+
+.contentTitle {
+    color: #4D675C;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 61.538% */
+}

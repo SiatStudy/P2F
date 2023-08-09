@@ -57,6 +57,18 @@ export const TitleTag = ({ mode }) => {
         "VersionTitle" : {
             style : styles.pageTitle,
             text : "버전"
+        },
+        "stayUse" : {
+            style : styles.contentTitle,
+            text : "호텔 내 사용 가능 여부"
+        },
+        "stayProduct" : {
+            style : styles.contentTitle,
+            text : "호텔 내 이용 가능 안내"
+        },
+        "stayLocation" : {
+            style : styles.contentTitle,
+            text : "호텔 위치"
         }
     };
 

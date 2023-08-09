@@ -111,3 +111,40 @@
     border-radius: 100px;
     background: #E8E6DA;
 }
+
+.myPageBtn {
+    width: 10rem;
+    height: 10rem;
+
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    border-radius: 200px;
+    background: rgba(219, 210, 195, 0.50);
+    box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.payBtn {
+    display: flex;
+
+    place-content: center;
+    place-items: center;
+
+    height: 1.9rem;
+
+    border-radius: 7px;
+    background: #E8E3DC;
+
+    color: #4D4545;
+    text-align: center;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px; /* 80% */
+    letter-spacing: 4px;
+}

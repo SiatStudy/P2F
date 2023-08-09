@@ -48,6 +48,10 @@ export const BtnTag = ({ type, mode, data, isdisabled, event, selected }) => {
                 func : () => {
                     alert("구현중입니다.");
                 }
+            },
+            "payBtn" : {
+                style : styles.payBtn,
+                text : "결제하기"
             }
         },
         "shortBtn" : {
@@ -79,6 +83,11 @@ export const BtnTag = ({ type, mode, data, isdisabled, event, selected }) => {
             },
             "categoryBtn" : {
                 style : selected ? styles.selectedCategoryBtn : styles.noneCategoryBtn,
+                type : "button",
+                text : `${data}`
+            },
+            "mypageBtn" : {
+                style : styles.myPageBtn,
                 type : "button",
                 text : `${data}`
             }

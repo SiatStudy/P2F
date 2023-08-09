@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { Logo } from "./Logo";
 
 import { faSearch, faTimes, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -5,6 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Navigator.module.css";
 
 export const Navigator = ({ mode, searchMode, setSearchMode }) => {
+    const userLogin = useSelector(state => state.userLogin);
+    const dispatch = useDispatch();
+    const history = useNavigate();
+
     const styleMode = {
         true : {
             background : styles.noneNav,
@@ -21,10 +28,10 @@ export const Navigator = ({ mode, searchMode, setSearchMode }) => {
     return (
         <div className={styleMode[mode].background}>
             <div className={styles.navDiv}>
-                <Logo whiteMode={mode} sizeMode={undefined} />
+                <Logo whiteMode={mode} sizeMode={undefined} event={() => history("/")}  />
                 <ul className={styles.menuList}>
-                    <li className={styleMode[mode].text}>지역별 검색</li>
-                    <li className={styleMode[mode].text}>종류별 검색</li>
+                    <li className={styleMode[mode].text} onClick={() => history(`/location/default`)} >지역별 검색</li>
+                    <li className={styleMode[mode].text} onClick={() => history(`/stay/default`)} >종류별 검색</li>
                 </ul>
             </div>
             {searchMode ? (
@@ -36,7 +43,7 @@ export const Navigator = ({ mode, searchMode, setSearchMode }) => {
                            <FontAwesomeIcon icon={faSearch} onClick={() => setSearchMode(true)} />
                        </li>
                        <li className={styleMode[mode].icon}>
-                           <FontAwesomeIcon icon={faUser} onClick={() => alert("라우터 구현중입니다.")} />
+                           <FontAwesomeIcon icon={faUser} onClick={() => userLogin.useLogin ? history("/mypage") : history("/login")} />
                        </li>
                    </ul>
                </div>

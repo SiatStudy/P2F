@@ -5,20 +5,23 @@ import styles from "./LinkTag.module.css";
 export const LinkTag = ({ mode }) => {
     const linkObj = {
         "idFind" : {
+            style : styles.link,
             text : "아이디 찾기",
-            link : "#"
+            link : "/login/search/id"
         },
         "pwFind" : {
+            style : styles.link,
             text : "비밀번호 찾기",
-            link : "#"
+            link : "/login/search/pw"
         },
-        "userJoin" : {
+        "signup" : {
+            style : styles.signupLink,
             text : "회원 가입",
-            link : "#"
+            link : "/users/signup"
         }
     };
 
     return (
-        <p to={linkObj[mode].link}>{linkObj[mode].text}</p>
+        <Link to={linkObj[mode].link} className={linkObj[mode].style}>{linkObj[mode].text}</Link>
     )
 }
