@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 
 import { Navigator } from "../../component/Navigator";
 
@@ -8,10 +9,9 @@ import styles from "./HeaderNav.module.css"
 
 export const HeaderNav = ({ headerMode }) => {
     const [ searchMode, setSearchMode ] = useState(false);
+    const [ searchData, setSearchData ] = useState("");
+    const history = useNavigate();
 
-    const searchFunc = () => {
-        alert("검색어 구현중");
-    }
 
     return (
         <>
@@ -19,8 +19,8 @@ export const HeaderNav = ({ headerMode }) => {
                 <nav>
                     <Navigator mode={false} searchMode={searchMode} setSearchMode={setSearchMode} />
                     <div className={styles.searchContent}>
-                        <input type={"text"} className={styles.searchInput} placeholder={"검색어를 입력해주세요."} />
-                        <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} onClick={searchFunc}/>
+                        <input type={"text"} className={styles.searchInput} placeholder={"검색어를 입력해주세요."} onChange={({ target }) => setSearchData(target.value)} />
+                        <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} onClick={() => history(`/search/${searchData}`)}/>
                     </div>
                 </nav>
             ) : (

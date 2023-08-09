@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { PaginationContent } from "../../component/Pagenation";
 import { SearchTarget } from "./SearchTarget";
@@ -7,14 +7,11 @@ import { SearchTarget } from "./SearchTarget";
 import styles from "./SearchContent.module.css"
 
 export const SearchContent = () => {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const searchData = searchParams.get('searchData');
+    const { searchData } = useParams();
+    const [ searchDataState, setSearchDataState ] = useState(searchData === "default" ? "" : searchData);
 
-    const [searchDataState, setSearchDataState] = useState(searchData);
-
-    const SearchFunc = () => {
-        setSearchDataState("newSearchData");
+    const SearchFunc = ({ target }) => {
+        setSearchDataState(target.value);
     }
 
     return (

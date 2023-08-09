@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 import { isIDPattern } from "../../util/validation/isIDPattern";
 import { isPWPattern } from "../../util/validation/isPWPattern";
@@ -45,6 +46,7 @@ export const LoginContent = () => {
             </div>
             <span className={styles.LinkContainer}><LinkTag mode={"idFind"} /> / <LinkTag mode={"pwFind"} /></span>
             <BtnTag mode={"login"} type={"longBtn"} isdisabled={onBtn} event={loginFunc} />
+            <span>아직 회원이 아니십니까? <LinkTag mode={"signup"}  /></span>
         </form>
     )
 }

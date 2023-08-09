@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useParams} from "react-router-dom";
 
 import { BtnTag } from "../../component/BtnTag";
 import { InputTag } from "../../component/InputTag";
@@ -10,7 +11,8 @@ import { isIDPattern } from "../../util/validation/isIDPattern";
 import styles from "./FindDataContent.module.css"
 
 export const FindDataContent = () => {
-    const [ mode, setMode ] = useState("id");
+    const { userData } = useParams();
+    const [ mode, setMode ] = useState(userData);
     const [ email, setEmail ] = useState("");
     const [ id, setId ] = useState("");
     const [ sendData, setSendData ] = useState(null);
