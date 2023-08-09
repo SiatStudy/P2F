@@ -1,0 +1,34 @@
+.userInfoDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding: 7rem 5rem 5rem 5rem;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.userData {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.userInfoList {
+    display: flex;
+    gap: 5rem;
+
+    padding-left: 2rem;
+
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px; /* 105% */
+    letter-spacing: 0.4px;
+}

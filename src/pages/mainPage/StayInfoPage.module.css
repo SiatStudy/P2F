@@ -1,0 +1,183 @@
+.contentDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1rem 3rem;
+    place-content: center;
+}
+
+.star {
+    display: flex;
+    gap: 0.4rem;
+
+    place-items: center;
+
+    color: #484848;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.825px;
+}
+
+.starIcon {
+    color: #FFA800;
+}
+
+.textTitle {
+    color: #4D675C;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 45px */
+}
+
+.dateContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    height: 2rem;
+}
+
+.dateInput {
+    padding: 0 1rem;
+    border-radius: 7px;
+    border: 1px solid #A6A6A6;
+    background: #FFF;
+}
+
+.dateAPay {
+    display: flex;
+    padding: 1rem 1rem;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #A6A6A6;
+    border-top: 1px solid #A6A6A6;
+
+    color: #87898E;
+    text-align: right;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 64% */
+}
+
+.totalDiv {
+    display: flex;
+    gap: 3rem;
+    padding: 1rem 1rem;
+
+    justify-content: flex-end;
+    place-items: center;
+}
+
+.mainTitle {
+    margin: 1rem;
+    color: #4D675C;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 61.538% */
+}
+
+.text1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    place-items: center;
+}
+
+.stayText {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+
+    padding: 1rem;
+
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.3rem;
+    font-style: normal;
+}
+
+.title {
+    color: #4D675C;
+    font-weight: 700;
+}
+
+.text {
+    color: #87898E;
+    font-weight: 500;
+
+    overflow: visible;
+    word-wrap: break-word;
+}
+
+.contentUseDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    padding: 2rem 3rem;
+    place-content: center;
+}
+
+.stayInfoFac {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stayInfoFacG {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    place-items: center;
+
+    line-height: 2.4rem;
+}
+
+.textFac {
+    width: 100%;
+
+    color: #888;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.44px;
+
+    text-align: center;
+    border-bottom: 1px solid #DBD2C3;
+}
+
+.itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1rem 3rem;
+}
+
+.items {
+    list-style: disc;
+}
+
+.sp {
+    list-style: circle;
+}
+
+.MapDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
