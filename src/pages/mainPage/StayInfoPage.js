@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useParams} from "react-router-dom";
 import Slider from "react-slick";
 
 import { BtnTag } from "../../component/BtnTag";
@@ -20,6 +21,7 @@ export const StayInfoPage = () => {
     const [ startDate, setStartDate ] = useState();
     const [ endDate, setEndDate ] = useState();
     const [ mode, setMode ] = useState("상세 정보");
+    const { productId } = useParams();
 
     let duration = 0;
 
@@ -115,7 +117,7 @@ export const StayInfoPage = () => {
                         </div>
                         <div className={styles.MapDiv}>
                             <TitleTag mode={"stayLocation"} />
-                            <MapComponent address={"경기도 성남시"} api={"AIzaSyAljTnFeC3gPK9v_OvHtBUESbTTVGoXiAc"} />
+                            <MapComponent address={"대전광역시 서구 관저중로 33"} api={"AIzaSyAljTnFeC3gPK9v_OvHtBUESbTTVGoXiAc"} />
                         </div>
                     </div>
                 )}
