@@ -69,7 +69,7 @@ export const SignupContent = () => {
     }
 
     const CodeFunc = () => {
-        const req = login("code", { code : code});
+        const req = login("code", { code : code });
         if(code) {
             setEmailValidate(true);
         } else {
