@@ -47,8 +47,10 @@ export const SignupContent = () => {
         if(isIDPattern(id)) {
             const req = login("duple", { id : id });
             if(req) {
-                alert("회원 가입에 성공하셨습니다.");
-                history("/login");
+                setIdValidate(true);
+            } else {
+                alert("중복되는 아이디가 존재합니다.")
+                setIdValidate(false);
             }
         } else {
             setIdValidate(false);
@@ -94,7 +96,7 @@ export const SignupContent = () => {
                 <InputTag mode={"id"} check={true} checkType={"dupleBtn"} setValue={setId} validate={idValidate} disabled={id === ""} event={IdDupleFunc} />
                 <InputTag mode={"name"} setValue={setNickName} validate={nickName !== "" ? isNickNamePattern(nickName) : true} />
                 <InputTag mode={"pw"} setValue={setPw} validate={pwValidate} />
-                <InputTag mode={"pwCorrect"} check={true} checkType={"checkBtn"} setValue={setPwSafe} validate={pwSafe !== "" ? pw === pwSafe : true} disabled={(pwSafe === "" || pw === "")} />
+                <InputTag mode={"pwCorrect"} setValue={setPwSafe} validate={pwSafe !== "" ? pw === pwSafe : true} disabled={(pwSafe === "" || pw === "")} />
                 <InputTag mode={"email"} check={true} checkType={"reqBtn"} setValue={setEmail} validate={emailValidate} disabled={email === ""} event={EmailFunc} />
                 {codeMode ? (
                     <InputTag mode={"code"} check={true} checkType={"reqBtn"} setValue={setCode} disabled={code === ""} event={CodeFunc} />

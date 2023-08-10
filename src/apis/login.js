@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const login = async (mode, apiData) => {
-
     const modeApi = {
         "login" : {
             func : (data) => {

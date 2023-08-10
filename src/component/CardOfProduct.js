@@ -11,10 +11,10 @@ export const CardOfProduct = ({ key, item, data }) => {
     };
 
     const textData = {
-        star: data.star,
-        name: data.name,
-        location: data.location,
-        pay: data.pay,
+        star: data.pdpoint,
+        name: data.pdname,
+        location: data.pdaddr,
+        pay: data.pdprice,
     };
 
     return (

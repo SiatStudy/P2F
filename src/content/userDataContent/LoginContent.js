@@ -34,9 +34,9 @@ export const LoginContent = () => {
         document.cookie = "validate" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }, [id, pw]);
 
-    const loginFunc = () => {
+    const loginFunc = async () => {
         if(isIDPattern(id) && isPWPattern(pw)) {
-            const req = login("login", {id: id, password: pw});
+            const req = await login("login", {id: id, password: pw});
             if (req) {
                 dispatch(userLogin(req));
             }
@@ -46,13 +46,13 @@ export const LoginContent = () => {
     }
 
     return (
-        <form className={styles.formTag}>
+        <form onSubmit={loginFunc} className={styles.formTag}>
             <div className={styles.loginInput}>
                 <InputTag mode={"id"} setValue={setId} validate={validate}/>
                 <InputTag mode={"pw"} setValue={setPw} validate={validate}/>
             </div>
             <span className={styles.LinkContainer}><LinkTag mode={"idFind"} /> / <LinkTag mode={"pwFind"} /></span>
-            <BtnTag mode={"login"} type={"longBtn"} isdisabled={onBtn} event={loginFunc} />
+            <BtnTag mode={"login"} type={"longBtn"} isdisabled={onBtn} />
             <span>아직 회원이 아니십니까? <LinkTag mode={"signup"}  /></span>
         </form>
     )

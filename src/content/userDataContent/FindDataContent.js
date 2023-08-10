@@ -19,11 +19,21 @@ export const FindDataContent = () => {
     const [ sendData, setSendData ] = useState(null);
 
     const findIdFunc = () => {
-        setSendData(login("searchId", { id : id }));
+        login("searchId", { id : id })
+            .then(req => {
+                setSendData(req);
+            })
     }
 
     const findPwFunc = () => {
-        setSendData(login("searchPw", { id : id, email : email }));
+        login("searchPw", { id : id, email : email })
+            .then(req => {
+                if(req) {
+                    setSendData(req);
+                } else {
+                    alert("존재하는 아이디 혹은 이메일이 아닙니다.");
+                }
+            })
     }
 
     useEffect(() => {
