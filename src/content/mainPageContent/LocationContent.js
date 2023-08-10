@@ -1,4 +1,5 @@
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { BtnTag } from "../../component/BtnTag";
 import { TitleTag } from "../../component/TitleTag";
 

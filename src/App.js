@@ -19,7 +19,7 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path={"/"} element={<MainPage />} />
+                <Route path={"/mainpage"} element={<MainPage />} />
                 <Route path={"/login"} element={<LoginPage />} />
                 <Route path={"/users/signup"} element={<SignupPage />} />
                 <Route path={"/login/search/:userData"} element={<FindDataPage />} />
@@ -27,7 +27,7 @@ function App() {
                 <Route path={"/location/:locationData"} element={<LocationPage />} />
                 <Route path={"/search/:searchData"} element={<SearchPage />} />
                 <Route path={"/user/info"} element={<UserInfoPage />} />
-                <Route path={"/user/payment"} element={<PaymentPage />} />
+                <Route path={"/payment/:productId/:amount"} element={<PaymentPage />} />
                 <Route path={"/mypage"} element={<MyPage />} />
                 <Route path={"/product/:productId"} element={<StayInfoPage />} />
             </Routes>

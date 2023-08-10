@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {login} from "../../apis/login";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { login } from "../../apis/login";
 
 import { BtnTag } from "../../component/BtnTag";
 import { InputTag } from "../../component/InputTag";
@@ -18,15 +19,17 @@ export const FindDataContent = () => {
     const [ id, setId ] = useState("");
     const [ sendData, setSendData ] = useState(null);
 
+    const history = useNavigate();
+
     const findIdFunc = () => {
-        login("searchId", { id : id })
+        login("searchId", { username : id })
             .then(req => {
                 setSendData(req);
             })
     }
 
     const findPwFunc = () => {
-        login("searchPw", { id : id, email : email })
+        login("searchPw", { username : id, useremail : email })
             .then(req => {
                 if(req) {
                     setSendData(req);
@@ -52,7 +55,7 @@ export const FindDataContent = () => {
                 ) : (
                     <div className={styles.idFindContainer}>
                         <p className={styles.text}>회원님의 아이디는 <span className={styles.textId}>{sendData}</span>입니다.</p>
-                        <BtnTag type={"longBtn"} mode={"toLogin"} event={() => alert("라우터 구현중")} isdisabled={email !== ""} />
+                        <BtnTag type={"longBtn"} mode={"toLogin"} event={() => history("/login")} isdisabled={email !== ""} />
                     </div>
                 )
             ) : (
@@ -64,8 +67,8 @@ export const FindDataContent = () => {
                     </div>
                 ) : (
                     <div className={styles.idFindContainer}>
-                        <p className={styles.text}> 이메일로 전송완료 했습니다.</p>
-                        <BtnTag type={"longBtn"} mode={"toLogin"} event={() => alert("라우터 구현중")} isdisabled={email !== ""} />
+                        <p className={styles.text}> 당신의 비밀번호는 <span>응애</span> 입니다.</p>
+                        <BtnTag type={"longBtn"} mode={"toLogin"} event={() => history("/login")} isdisabled={email !== ""} />
                     </div>
                 )
             )}

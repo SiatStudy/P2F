@@ -4,12 +4,10 @@ export const login = async (mode, apiData) => {
     const modeApi = {
         "login" : {
             func : (data) => {
-                axios.post("/login/login", {
-                    params: data
-                })
+                axios.post("/login/login", { params: data })
                     .then(res => {
-                        if(res.success) {
-                            return res.result.sectionId;
+                        if(res.data.isValid) {
+                            return res.data.userId;
                         } else {
                             alert("아이디와 비밀번호가 틀렸습니다.");
                         }
@@ -21,10 +19,10 @@ export const login = async (mode, apiData) => {
         },
         "duple" : {
             func : (data) => {
-                axios.post("/login/duple", data)
+                axios.post("/login/duple", { params : data })
                     .then(res => {
-                        if(res.success) {
-                            return !res.result.isExist;
+                        if(res.data) {
+                            return !res.data;
                         }
                     })
                     .catch(err => {
@@ -34,10 +32,12 @@ export const login = async (mode, apiData) => {
         },
         "searchId" : {
             func : (data) => {
-                axios.post("/login/search/id", data)
+                axios.post("/login/search/id", { params : data })
                     .then(res => {
-                        if(res.success) {
-                            return res.result.userAccountId;
+                        if(res.data?.userId) {
+                            return res.data.userId;
+                        } else {
+                            throw Error("none userId");
                         }
                     })
                     .catch(err => {
@@ -47,9 +47,11 @@ export const login = async (mode, apiData) => {
         },
         "searchPw" : {
             func : (data) => {
-                axios.post("/login/search/password", data)
+                axios.post("/login/search/password", { params : data })
                     .then(res => {
-                        return res.success;
+                        if(res.data?.userPw) {
+                            return res.data.userPw;
+                        }
                     })
                     .catch(err => {
                         alert("[ERROR} Login search PW API error");
@@ -58,31 +60,31 @@ export const login = async (mode, apiData) => {
         },
         "signup" : {
             func : (data) => {
-                axios.post("/users/signup", data)
+                axios.post("/users/signup", { params : data })
                     .then(res => {
-                        return res.success;
+                        return res.data;
                     })
                     .catch(err => alert("[ERROR] SignUp API error"));
             }
         },
-        "emailCode" : {
-            func : (data) => {
-                axios.post("/api/mail/send", data)
-                    .then(res => {
-                        return res.success;
-                    })
-                    .catch(err => alert("[ERROR] emailCode API error"))
-            }
-        },
-        "code" : {
-            func : (data) => {
-                axios.post("/api/mail/check", data)
-                    .then(res => {
-                        return res.success;
-                    })
-                    .catch(err => alert("[ERROR] code API error"));
-    }
-        }
+        // "emailCode" : {
+        //     func : (data) => {
+        //         axios.post("/api/mail/send", { params : data })
+        //             .then(res => {
+        //                 return res.success;
+        //             })
+        //             .catch(err => alert("[ERROR] emailCode API error"))
+        //     }
+        // },
+        // "code" : {
+        //     func : (data) => {
+        //         axios.post("/api/mail/check", { params : data })
+        //             .then(res => {
+        //                 return res.success;
+        //             })
+        //             .catch(err => alert("[ERROR] code API error"));
+        //     }
+        // }
     }
 
     return modeApi[mode].func(apiData);

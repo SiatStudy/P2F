@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {stayJson} from "../json/stayJson";
-import {CardOfProduct} from "./CardOfProduct";
+
+import { product } from "../apis/product";
+import { locationKey } from "../json/locationKey";
+import { stayTypeKey } from "../json/stayTypeKey";
+
+import { CardOfProduct } from "./CardOfProduct";
 
 import styles from "./Pagenation.module.css"
 
@@ -12,16 +16,22 @@ export const PaginationContent = ({ mode, selected }) => {
 
     useEffect(() => {
         if(mode === "location") {
-            const selectData = stayJson.filter(({ locate }) => locate === selected);
-            setData(selectData);
+            product("locate", locationKey[selected])
+                .then(res => {
+                    setData(res);
+                })
         } else if(mode === "stay") {
-            const selectData = stayJson.filter(({ title }) => title === selected);
-            setData(selectData);
+            product("location", stayTypeKey[selected])
+                .then(res => {
+                    setData(res);
+                })
         } else if(mode === "search") {
-            const selectData = stayJson.filter(({ title, locate, text }) => title.includes(selected) || locate.includes(selected) || text.name.includes(selected))
-            setData(selectData);
+            product("search", selected)
+                .then(res => {
+                    setData(res);
+                });
         }
-    }, [selected]);
+    }, [mode, selected]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -34,8 +44,8 @@ export const PaginationContent = ({ mode, selected }) => {
     return (
         <div className={styles.itemsDiv}>
             <ul className={styles.itemsList}>
-                {currentItems.map(({ title, locate, src, text }, index) => {
-                    return  <CardOfProduct key={index} item={src} data={text}/>
+                {currentItems.map(( data) => {
+                    return  <CardOfProduct src={`${process.env.PUBLIC_URL}/asset/img/main/MainPage_추천_img.jpg`} data={data}/>
                 })}
             </ul>
             <Pagination

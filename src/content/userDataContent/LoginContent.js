@@ -1,7 +1,9 @@
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {login} from "../../apis/login";
-import {userLogin} from "../../store/userLogin";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { login } from "../../apis/login";
+import { userLogin } from "../../store/userLogin";
 
 import { isIDPattern } from "../../util/validation/isIDPattern";
 import { isPWPattern } from "../../util/validation/isPWPattern";
@@ -19,6 +21,7 @@ export const LoginContent = () => {
     const [ onBtn, setOnBtn ] = useState(true);
 
     const dispatch = useDispatch();
+    const history = useNavigate();
 
     useEffect(() => {
         if(id && pw) {
@@ -38,10 +41,11 @@ export const LoginContent = () => {
         e.preventDefault();
 
         if(isIDPattern(id) && isPWPattern(pw)) {
-            const req = await login("login", {id: id, password: pw});
-            if (req) {
-                dispatch(userLogin(req));
-            }
+            await login("login", { username : id, userpassword: pw })
+                .then(req => {
+                    dispatch(userLogin(req));
+                    history("/mainpage");
+                });
         } else {
             document.cookie = "validate=false"
         }

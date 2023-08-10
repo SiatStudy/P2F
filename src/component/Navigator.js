@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { Logo } from "./Logo";
@@ -9,7 +9,6 @@ import styles from "./Navigator.module.css";
 
 export const Navigator = ({ mode, searchMode, setSearchMode }) => {
     const userLogin = useSelector(state => state.userLogin);
-    const dispatch = useDispatch();
     const history = useNavigate();
 
     const styleMode = {

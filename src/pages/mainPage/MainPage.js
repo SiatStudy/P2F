@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import { LocationContent } from "../../content/mainPageContent/LocationContent";
 import { RecommendContent } from "../../content/mainPageContent/RecommendContent";

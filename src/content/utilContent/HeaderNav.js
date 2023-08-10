@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Navigator } from "../../component/Navigator";
 
@@ -11,7 +11,6 @@ export const HeaderNav = ({ headerMode }) => {
     const [ searchMode, setSearchMode ] = useState(false);
     const [ searchData, setSearchData ] = useState("");
     const history = useNavigate();
-
 
     return (
         <>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
-import {login} from "../../apis/login";
+import { useNavigate } from "react-router-dom";
+
+import { login } from "../../apis/login";
 
 import { BtnTag } from "../../component/BtnTag";
 import { InputTag } from "../../component/InputTag";
@@ -45,13 +46,15 @@ export const SignupContent = () => {
 
     const IdDupleFunc = () => {
         if(isIDPattern(id)) {
-            const req = login("duple", { id : id });
-            if(req) {
-                setIdValidate(true);
-            } else {
-                alert("중복되는 아이디가 존재합니다.")
-                setIdValidate(false);
-            }
+            login("duple", { username : id })
+                .then(res => {
+                    if(res) {
+                        setIdValidate(true);
+                    } else {
+                        alert("중복되는 아이디가 존재합니다.")
+                        setIdValidate(false);
+                    }
+                });
         } else {
             setIdValidate(false);
         }
@@ -59,35 +62,41 @@ export const SignupContent = () => {
 
     const EmailFunc = () => {
         if(isEmailPattern(email)) {
-            const req = login("emailCode", { email : email });
-            if(req) {
-                setCodeMode(true);
-            } else {
-                setCodeMode(false);
-            }
+            login("emailCode", { useremail : email })
+                .then(res => {
+                    if(res) {
+                        setCodeMode(true);
+                    } else {
+                        setCodeMode(false);
+                    }
+                })
         } else {
             setEmailValidate(false);
         }
     }
 
     const CodeFunc = () => {
-        const req = login("code", { code : code });
-        if(code) {
-            setEmailValidate(true);
-        } else {
-            alert("이메일 코드가 올바르지 않습니다.");
-        }
+        login("code", { code : code })
+            .then(res => {
+                if(res) {
+                    setEmailValidate(true);
+                } else {
+                    alert("이메일 코드가 올바르지 않습니다.");
+                }
+            })
     }
 
     const signUpFunc = () => {
-        const req = login("signup", { id : id, email : email, password : pw, name : nickName });
-        if(req) {
-            alert("회원가입 완료")
-            history("/login");
-        } else {
-            alert("회원가입 실패");
-            history("/login");
-        }
+        login("signup", { username : id, useremail : email, userpassword : pw, usernickname : nickName })
+            .then(res => {
+                if(res) {
+                    alert("회원가입 완료")
+                    history("/login");
+                } else {
+                    alert("회원가입 실패");
+                    history("/login");
+                }
+            })
     }
 
     return (

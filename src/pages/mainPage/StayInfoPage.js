@@ -1,11 +1,15 @@
-import { useState } from "react";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 
+import { product } from "../../apis/product";
+import { stayInfo } from "../../json/stayInfo";
+
+import MapComponent from "../../component/MapComponent";
 import { BtnTag } from "../../component/BtnTag";
 import { Label2Tag } from "../../component/Label2Tag";
-import MapComponent from "../../component/MapComponent";
-import {TitleTag} from "../../component/TitleTag";
+import { TitleTag } from "../../component/TitleTag";
+
 import { FooterContent } from "../../content/utilContent/FooterContent";
 import { HeaderNav } from "../../content/utilContent/HeaderNav";
 
@@ -14,16 +18,17 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import './SwiperContent.css';
-import {stayInfo} from "../../json/stayInfo";
 import styles from "./StayInfoPage.module.css";
 
 export const StayInfoPage = () => {
     const [ startDate, setStartDate ] = useState();
     const [ endDate, setEndDate ] = useState();
     const [ mode, setMode ] = useState("상세 정보");
-    const { productId } = useParams();
+    const [ data, setData ] = useState([]);
+    const [ duration, setDuration ] = useState();
 
-    let duration = 0;
+    const { productId } = useParams();
+    const history = useNavigate();
 
     const settings = {
         className : "slider-items",
@@ -36,11 +41,18 @@ export const StayInfoPage = () => {
     };
 
     const swiperPhoto = ["img_1", "img_2", "img_3"];
-    const data = {
-        star : 9.0,
-        locate : "[서울 / 인사동]",
-        name : "나인트리 프리미어 호텔 인사동"
-    }
+
+    useEffect(() => {
+        product("productInfo", productId)
+            .then(res => {
+                setData(res);
+            });
+    }, [productId]);
+
+    useEffect(() => {
+        const timeDiff = endDate - startDate;
+        setDuration(timeDiff / 86400000);
+    }, [startDate, endDate])
 
     return (
         <>
@@ -54,10 +66,10 @@ export const StayInfoPage = () => {
                 <div>
                     <p className={styles.star}>
                         <FontAwesomeIcon icon={faStar} className={styles.starIcon} />
-                        {data.star}
+                        {data.pdpoint}
                     </p>
                     <p className={styles.textTitle}>
-                        {data.locate} {data.name}
+                        [{data.pdaddr.split(" ")[0]} / {data.pdaddr.split(" ")[1]}] {data.pdname}
                     </p>
                 </div>
                 <div className={styles.dateContent}>
@@ -68,11 +80,11 @@ export const StayInfoPage = () => {
                     <div>
                         {startDate || endDate ? (<p>{startDate} ~ {endDate}</p>) : (<p>기간을 설정하지 않았습니다.</p>)}
                     </div>
-                    <p>금액: <span>{data.pay ? data.pay : 0}</span></p>
+                    <p>금액: <span>{data.pdprice ? data.pdprice : 0}</span></p>
                 </div>
                 <div className={styles.totalDiv}>
-                    <p>총 합계 : <span>{isNaN(data.pay * duration) ? <span>0</span> : <span>{data.pay * duration}</span>}</span></p>
-                    <BtnTag type={"shortBtn"} mode={"bookBtn"} event={() => alert("결제 시스템 구현중")} />
+                    <p>총 합계 : <span>{isNaN(data.pdprice * duration) ? <span>0</span> : <span>{data.pdprice * duration}</span>}</span></p>
+                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${productId}/${duration}`)} />
                 </div>
                 <Label2Tag data={["상세 정보","이용 안내"]} selectData={mode} setSelectData={setMode} />
                 {mode === "상세 정보" ? (
@@ -117,7 +129,7 @@ export const StayInfoPage = () => {
                         </div>
                         <div className={styles.MapDiv}>
                             <TitleTag mode={"stayLocation"} />
-                            <MapComponent address={"대전광역시 서구 관저중로 33"} api={"AIzaSyAljTnFeC3gPK9v_OvHtBUESbTTVGoXiAc"} />
+                            <MapComponent address={data.pdaddr} api={"AIzaSyAljTnFeC3gPK9v_OvHtBUESbTTVGoXiAc"} />
                         </div>
                     </div>
                 )}

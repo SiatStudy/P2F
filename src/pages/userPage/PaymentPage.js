@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { product } from "../../apis/product";
+import { userData } from "../../apis/userData";
+
 import { BtnTag } from "../../component/BtnTag";
 import { TitleTag } from "../../component/TitleTag";
 import { FooterContent } from "../../content/utilContent/FooterContent";
@@ -8,10 +14,27 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import styles from "./PaymentPage.module.css";
 
 export const PaymentPage = () => {
-    const data = {
-        name : "SR 호텔 서울 마곡",
-        pay : 300000
+    const [ data, setData ] = useState([]);
+    const { productId, amount } = useParams();
+
+    useEffect(() => {
+        product("productInfo", productId)
+            .then(res => {
+                setData(res);
+            })
+    }, [productId]);
+
+    const productPayment = async () => {
+        await userData("payment", { pdname : data.pdname, amount : amount})
+            .then(res => {
+                if(res) {
+                    alert("결제 성공");
+                } else {
+                    alert("결제 실패");
+                }
+            })
     }
+
     return (
         <div>
             <HeaderNav headerMode={false} />
@@ -20,10 +43,10 @@ export const PaymentPage = () => {
                 <div className={styles.payContent}>
                     <img src={`${process.env.PUBLIC_URL}/asset/img/결제내역&결제 창/Placeholder image.png`} alt={"photo"} />
                     <div className={styles.productDiv}>
-                        <p className={styles.productTitle}>{data.name}</p>
-                        <p className={styles.productPay}>결제 금액 : {data.pay} 원</p>
+                        <p className={styles.productTitle}>{data.pdname}</p>
+                        <p className={styles.productPay}>결제 금액 : {data.pdprice} 원</p>
                         <div className={styles.productNumDiv}>
-                            <input type={"number"} className={styles.productNum} placeholder={"0"} />
+                            <input type={"number"} className={styles.productNum} value={amount} />
                             <FontAwesomeIcon icon={faTrash} />
                         </div>
                     </div>
@@ -34,10 +57,9 @@ export const PaymentPage = () => {
                         <input type={"radio"} value={"naver"}/><label>naver</label>
                         <input type={"radio"} value={"kakao"}/><label>kakao</label>
                     </div>
-                    <p className={styles.payText}>상품 금액 <span>{data.pay}</span></p>
-                    <p className={styles.payText}>쿠폰 할인 <span>{data.coupon ? data.coupon : 0}</span></p>
-                    <p className={styles.totalPayText}>총 결제 금액 <span>{data.pay - data.coupon ? data.pay - data.coupon : 0}</span></p>
-                    <BtnTag type={"longBtn"} mode={"payBtn"} event={() => alert("API 구현중임")} />
+                    <p className={styles.payText}>상품 금액 <span>{data.pdprice}</span></p>
+                    <p className={styles.totalPayText}>총 결제 금액 <span>{data.pdprice * amount}</span></p>
+                    <BtnTag type={"longBtn"} mode={"payBtn"} event={productPayment} />
                 </form>
             </div>
             <FooterContent />

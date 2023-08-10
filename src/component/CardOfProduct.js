@@ -1,39 +1,40 @@
+import { useNavigate } from "react-router-dom";
+
 import { BtnTag } from "./BtnTag";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CardOfProduct.module.css";
 
-export const CardOfProduct = ({ key, item, data }) => {
+export const CardOfProduct = ({ src, data }) => {
+    const history = useNavigate();
+
     const imgObj = {
-        src: `${item}`,
+        src: `${src}`,
         className: `${styles.stayImg}`,
     };
 
-    const textData = {
-        star: data.pdpoint,
-        name: data.pdname,
-        location: data.pdaddr,
-        pay: data.pdprice,
-    };
+    const cardClickEvent = () => {
+        history(`/product/${data.pdid}`);
+    }
 
     return (
-        <div key={key} className={styles.cardOfProduct}>
+        <div key={data.pdid} className={styles.cardOfProduct}>
             <img {...imgObj} alt={"stay Photo"}/>
             <div className={styles.cardUi}>
                 <div>
                     <p className={styles.starText}>
                         <FontAwesomeIcon icon={faStar} className={styles.starIcon} />
-                        {textData.star}
+                        {data.pdpoint}
                     </p>
-                    <p className={styles.locationText}>
-                        {textData.location} {textData.name}
+                    <p className={styles.locationText} onClick={cardClickEvent}>
+                        [{data.pdaddr.split(" ")[0]} / {data.pdaddr.split(" ")[1]}] {data.pdname}
                     </p>
                     <p className={styles.payText}>
-                        {textData.pay} ~ / 1박
+                        {data.pdprice} ~ / 1박
                     </p>
                 </div>
-                <BtnTag type={"shortBtn"} mode={"bookBtn"} event={() => alert("라우터 구현중")}/>
+                <BtnTag type={"shortBtn"} mode={"bookBtn"} event={() => history(`/payment/${data.pdid}/1`)}/>
             </div>
         </div>
     );

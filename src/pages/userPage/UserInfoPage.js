@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+import { userData } from "../../apis/userData";
+
 import { TitleTag } from "../../component/TitleTag";
 import {FooterContent} from "../../content/utilContent/FooterContent";
 import { HeaderNav } from "../../content/utilContent/HeaderNav";
@@ -5,14 +10,15 @@ import { HeaderNav } from "../../content/utilContent/HeaderNav";
 import styles from "./UserInfoPage.module.css"
 
 export const UserInfoPage = () => {
-    const data = {
-        name : "name",
-        nickname : "nickname",
-        email : "example123@example.com",
-        phone : "010-0000-0000",
-        birthday : "01/01/1997",
-        location : "default"
-    };
+    const userId = useSelector(state => state.userLogin);
+    const [ data, setData ] = useState();
+
+    useEffect(() => {
+        userData("userinfo", userId)
+            .then(res => {
+                setData(res);
+            });
+    }, [userId])
 
     return (
         <>
@@ -29,12 +35,12 @@ export const UserInfoPage = () => {
                         <p>주소</p>
                     </div>
                     <div className={styles.userData}>
-                        <p>{data.name}</p>
-                        <p>{data.nickname}</p>
-                        <p>{data.email}</p>
-                        <p>{data.phone}</p>
-                        <p>{data.birthday}</p>
-                        <p>{data.location}</p>
+                        <p>{data.username}</p>
+                        <p>{data.usernickname}</p>
+                        <p>{data.useremail}</p>
+                        <p>{data.phone ? data.phone : `입력하지 않음.`}</p>
+                        <p>{data.birthday ? data.phone : `입력하지 않음.`}</p>
+                        <p>{data.location ? data.phone : `입력하지 않음.`}</p>
                     </div>
                 </div>
             </div>

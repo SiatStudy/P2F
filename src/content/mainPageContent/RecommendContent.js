@@ -7,7 +7,8 @@ export const RecommendContent = () => {
         tell : "033-677-7000",
         pay : "547,555",
         location : "강원도 강릉시 해안로 406번길 2"
-    }
+    };
+
     return (
         <section className={styles.recommendSection}>
             <p className={styles.title}>다수의 이용 고객이 <span className={styles.nameTitle}>라한 씨마크 호텔 강릉</span>을(를) 추천해주었어요!</p>

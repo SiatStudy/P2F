@@ -1,5 +1,5 @@
 import { TitleTag } from "../../component/TitleTag";
-import {SignupContent} from "../../content/userDataContent/SignupContent";
+import { SignupContent } from "../../content/userDataContent/SignupContent";
 
 import styles from "./SignupPage.module.css"
 
