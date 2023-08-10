@@ -21,15 +21,15 @@ export const FindDataContent = () => {
 
     const history = useNavigate();
 
-    const findIdFunc = () => {
-        login("searchId", { username : id })
+    const findIdFunc = async () => {
+        await login("searchId", { username : id })
             .then(req => {
                 setSendData(req);
             })
     }
 
-    const findPwFunc = () => {
-        login("searchPw", { username : id, useremail : email })
+    const findPwFunc = async () => {
+        await login("searchPw", { username : id, useremail : email })
             .then(req => {
                 if(req) {
                     setSendData(req);

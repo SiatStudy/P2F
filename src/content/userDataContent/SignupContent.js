@@ -44,9 +44,9 @@ export const SignupContent = () => {
         }
     }, [pw]);
 
-    const IdDupleFunc = () => {
+    const IdDupleFunc = async () => {
         if(isIDPattern(id)) {
-            login("duple", { username : id })
+            await login("duple", { username : id })
                 .then(res => {
                     if(res) {
                         setIdValidate(true);
@@ -60,9 +60,9 @@ export const SignupContent = () => {
         }
     }
 
-    const EmailFunc = () => {
+    const EmailFunc = async () => {
         if(isEmailPattern(email)) {
-            login("emailCode", { useremail : email })
+            await login("emailCode", { useremail : email })
                 .then(res => {
                     if(res) {
                         setCodeMode(true);
@@ -75,8 +75,8 @@ export const SignupContent = () => {
         }
     }
 
-    const CodeFunc = () => {
-        login("code", { code : code })
+    const CodeFunc = async () => {
+        await login("code", { code : code })
             .then(res => {
                 if(res) {
                     setEmailValidate(true);
@@ -86,8 +86,8 @@ export const SignupContent = () => {
             })
     }
 
-    const signUpFunc = () => {
-        login("signup", { username : id, useremail : email, userpassword : pw, usernickname : nickName })
+    const signUpFunc = async () => {
+        await login("signup", { username : id, useremail : email, userpassword : pw, usernickname : nickName })
             .then(res => {
                 if(res) {
                     alert("회원가입 완료")

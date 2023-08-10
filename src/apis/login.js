@@ -4,7 +4,7 @@ export const login = async (mode, apiData) => {
     const modeApi = {
         "login" : {
             func : (data) => {
-                axios.post("/login/login", { params: data })
+                axios.post("/login/login", data )
                     .then(res => {
                         if(res.data.isValid) {
                             return res.data.userId;
@@ -81,7 +81,7 @@ export const login = async (mode, apiData) => {
                         }
                     })
                     .then(res => {
-                        return res.success;
+                        return res.data;
                     })
                     .catch(err => alert("[ERROR] emailCode API error"))
             }

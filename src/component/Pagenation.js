@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import { product } from "../apis/product";
@@ -14,24 +15,28 @@ export const PaginationContent = ({ mode, selected }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
+
     useEffect(() => {
         if(mode === "location") {
-            product("locate", locationKey[selected])
+            axios.get(`/main/location?location=${locationKey[selected]}`)
                 .then(res => {
-                    setData(res);
+                    setData(res.data);
                 })
+                .catch(err => alert("[ERROR] categories API error"));
         } else if(mode === "stay") {
-            product("location", stayTypeKey[selected])
+            axios.get(`/main/category?category=${stayTypeKey[selected]}`)
                 .then(res => {
-                    setData(res);
+                    setData(res.data);
                 })
+                .catch(err => alert("[ERROR] categories API error"));
         } else if(mode === "search") {
-            product("search", selected)
+            axios.get(`/main/category?category=${selected}`)
                 .then(res => {
-                    setData(res);
-                });
+                    setData(res.data);
+                })
+                .catch(err => alert("[ERROR] categories API error"));
         }
-    }, [mode, selected]);
+    }, [mode, selected, data]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
