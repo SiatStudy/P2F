@@ -1,5 +1,6 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {login} from "../../apis/login";
 
 import { BtnTag } from "../../component/BtnTag";
 import { InputTag } from "../../component/InputTag";
@@ -18,12 +19,16 @@ export const FindDataContent = () => {
     const [ sendData, setSendData ] = useState(null);
 
     const findIdFunc = () => {
-        alert("API 구현중입니다.");
+        setSendData(login("searchId", { id : id }));
     }
 
     const findPwFunc = () => {
-        alert("API 구현중입니다.");
+        setSendData(login("searchPw", { id : id, email : email }));
     }
+
+    useEffect(() => {
+        setSendData(null);
+    }, [mode])
 
     return (
         <div className={styles.findContainer}>

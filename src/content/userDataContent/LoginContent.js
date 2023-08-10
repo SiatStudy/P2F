@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "../../apis/login";
+import {userLogin} from "../../store/userLogin";
 
 import { isIDPattern } from "../../util/validation/isIDPattern";
 import { isPWPattern } from "../../util/validation/isPWPattern";
@@ -16,6 +18,8 @@ export const LoginContent = () => {
     const [ validate, setValidate ] = useState(true);
     const [ onBtn, setOnBtn ] = useState(true);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         if(id && pw) {
             setOnBtn(false);
@@ -31,11 +35,14 @@ export const LoginContent = () => {
     }, [id, pw]);
 
     const loginFunc = () => {
-        isIDPattern(id) && isPWPattern(pw) ? (
-            alert("APIS 구현중입니다.")
-        ) : (
+        if(isIDPattern(id) && isPWPattern(pw)) {
+            const req = login("login", {id: id, password: pw});
+            if (req) {
+                dispatch(userLogin(req));
+            }
+        } else {
             document.cookie = "validate=false"
-        );
+        }
     }
 
     return (

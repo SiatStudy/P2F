@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {login} from "../../apis/login";
 
 import { BtnTag } from "../../component/BtnTag";
 import { InputTag } from "../../component/InputTag";
@@ -19,7 +21,11 @@ export const SignupContent = () => {
     const [ pwSafe, setPwSafe ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ emailValidate, setEmailValidate ] = useState(true);
+    const [ code, setCode ] = useState();
+    const [ codeMode, setCodeMode ] = useState(false);
     const [ onBtn, setOnBtn ] = useState(true);
+
+    const history = useNavigate();
 
     useEffect(() => {
         if(!pwValidate && !idValidate && !emailValidate && isNickNamePattern(nickName)) {
@@ -39,22 +45,47 @@ export const SignupContent = () => {
 
     const IdDupleFunc = () => {
         if(isIDPattern(id)) {
-            alert("API 구현중입니다.");
+            const req = login("duple", { id : id });
+            if(req) {
+                alert("회원 가입에 성공하셨습니다.");
+                history("/login");
+            }
         } else {
             setIdValidate(false);
         }
     }
 
-    const EmailDupleFunc = () => {
+    const EmailFunc = () => {
         if(isEmailPattern(email)) {
-            alert("API 구현중입니다.");
+            const req = login("emailCode", { email : email });
+            if(req) {
+                setCodeMode(true);
+            } else {
+                setCodeMode(false);
+            }
         } else {
             setEmailValidate(false);
         }
     }
 
+    const CodeFunc = () => {
+        const req = login("code", { code : code});
+        if(code) {
+            setEmailValidate(true);
+        } else {
+            alert("이메일 코드가 올바르지 않습니다.");
+        }
+    }
+
     const signUpFunc = () => {
-        alert("API 구현중입니다.");
+        const req = login("signup", { id : id, email : email, password : pw, name : nickName });
+        if(req) {
+            alert("회원가입 완료")
+            history("/login");
+        } else {
+            alert("회원가입 실패");
+            history("/login");
+        }
     }
 
     return (
@@ -64,7 +95,10 @@ export const SignupContent = () => {
                 <InputTag mode={"name"} setValue={setNickName} validate={nickName !== "" ? isNickNamePattern(nickName) : true} />
                 <InputTag mode={"pw"} setValue={setPw} validate={pwValidate} />
                 <InputTag mode={"pwCorrect"} check={true} checkType={"checkBtn"} setValue={setPwSafe} validate={pwSafe !== "" ? pw === pwSafe : true} disabled={(pwSafe === "" || pw === "")} />
-                <InputTag mode={"email"} check={true} checkType={"reqBtn"} setValue={setEmail} validate={emailValidate} disabled={email === ""} event={EmailDupleFunc} />
+                <InputTag mode={"email"} check={true} checkType={"reqBtn"} setValue={setEmail} validate={emailValidate} disabled={email === ""} event={EmailFunc} />
+                {codeMode ? (
+                    <InputTag mode={"code"} check={true} checkType={"reqBtn"} setValue={setCode} disabled={code === ""} event={CodeFunc} />
+                ) : null }
                 <BtnTag type={"longBtn"} mode={"signup"} event={signUpFunc} isdisabled={onBtn} />
             </form>
         </>
