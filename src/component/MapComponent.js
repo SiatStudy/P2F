@@ -7,6 +7,7 @@ const MapComponent = ({ address, api }) => {
     useEffect(() => {
         if (address) {
             const script = document.createElement('script');
+
             script.src = `https://maps.googleapis.com/maps/api/js?key=${api}`;
             script.async = true;
             script.onload = () => {
@@ -40,9 +41,14 @@ const MapComponent = ({ address, api }) => {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={position || center}
-                zoom={10}
+                zoom={15}
             >
-                {position && <Marker position={position} label="A" />}
+                {position && <Marker position={position} icon={{
+                    url : `${process.env.PUBLIC_URL}/asset/icon/location-dot-solid.svg`,
+                    scaledSize : { width : 40, height : 40 },
+                    origin : { x : 0, y : 0 },
+                    anchor : { x : 20, y : 40 }
+                }} label={"A"}  />}
             </GoogleMap>
         </LoadScript>
     );
