@@ -67,15 +67,25 @@ export const login = async (mode, apiData) => {
                     .catch(err => alert("[ERROR] SignUp API error"));
             }
         },
-        // "emailCode" : {
-        //     func : (data) => {
-        //         axios.post("/api/mail/send", { params : data })
-        //             .then(res => {
-        //                 return res.success;
-        //             })
-        //             .catch(err => alert("[ERROR] emailCode API error"))
-        //     }
-        // },
+        "emailCode" : {
+            func : (data) => {
+                const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+                axios.post("/api/mail/send", {
+                        address : data.useremail,
+                        title : "Email check code",
+                        content : `회원 가입을 위한 인증 코드는 ${verificationCode} 입니다.`
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => {
+                        return res.success;
+                    })
+                    .catch(err => alert("[ERROR] emailCode API error"))
+            }
+        },
         // "code" : {
         //     func : (data) => {
         //         axios.post("/api/mail/check", { params : data })
