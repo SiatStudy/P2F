@@ -34,7 +34,9 @@ export const LoginContent = () => {
         document.cookie = "validate" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }, [id, pw]);
 
-    const loginFunc = async () => {
+    const loginFunc = async (e) => {
+        e.preventDefault();
+
         if(isIDPattern(id) && isPWPattern(pw)) {
             const req = await login("login", {id: id, password: pw});
             if (req) {

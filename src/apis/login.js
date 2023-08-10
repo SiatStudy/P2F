@@ -4,7 +4,9 @@ export const login = async (mode, apiData) => {
     const modeApi = {
         "login" : {
             func : (data) => {
-                axios.post("/login/login", data)
+                axios.post("/login/login", {
+                    params: data
+                })
                     .then(res => {
                         if(res.success) {
                             return res.result.sectionId;
