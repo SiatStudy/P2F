@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 
 import { stayInfo } from "../../json/stayInfo";
-import { returnProduct } from "../../store/selectedProduct";
 
 import MapComponent from "../../component/MapComponent";
 import { BtnTag } from "../../component/BtnTag";
@@ -28,7 +27,6 @@ export const StayInfoPage = () => {
     const [ mode, setMode ] = useState("상세 정보");
     const [ duration, setDuration ] = useState();
 
-    const dispatch = useDispatch();
     const history = useNavigate();
 
     const settings = {
@@ -44,9 +42,10 @@ export const StayInfoPage = () => {
     const swiperPhoto = ["img_1", "img_2", "img_3"];
 
     useEffect(() => {
-        console.log(startDate);
-        console.log(endDate);
-        const timeDiff = endDate - startDate;
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        const timeDiff = end - start;
         setDuration(timeDiff / 86400000);
     }, [startDate, endDate])
 
@@ -80,7 +79,7 @@ export const StayInfoPage = () => {
                 </div>
                 <div className={styles.totalDiv}>
                     <p>총 합계 : <span>{isNaN(data.pdprice * duration) ? <span>0</span> : <span>{data.pdprice * duration}</span>}</span></p>
-                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdname}/${data.pdprice}`)} />
+                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdname}/${data.pdprice * duration}`)} />
                 </div>
                 <Label2Tag data={["상세 정보","이용 안내"]} selectData={mode} setSelectData={setMode} />
                 { mode === "상세 정보" ? (
