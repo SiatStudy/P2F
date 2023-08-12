@@ -25,12 +25,12 @@ export const StayInfoPage = () => {
     const [ startDate, setStartDate ] = useState();
     const [ endDate, setEndDate ] = useState();
     const [ mode, setMode ] = useState("상세 정보");
-    const [ data, setData ] = useState([]);
+    const [ data, setData ] = useState({});
     const [ duration, setDuration ] = useState();
 
-    const { productId } = useParams();
     const dispatch = useDispatch();
     const history = useNavigate();
+    setData(dispatch(returnProduct))
 
     const settings = {
         className : "slider-items",
@@ -43,11 +43,6 @@ export const StayInfoPage = () => {
     };
 
     const swiperPhoto = ["img_1", "img_2", "img_3"];
-
-    useEffect(() => {
-        const product = dispatch(returnProduct(productId));
-        setData(product);
-    }, [productId]);
 
     useEffect(() => {
         const timeDiff = endDate - startDate;
@@ -84,7 +79,7 @@ export const StayInfoPage = () => {
                 </div>
                 <div className={styles.totalDiv}>
                     <p>총 합계 : <span>{isNaN(data.pdprice * duration) ? <span>0</span> : <span>{data.pdprice * duration}</span>}</span></p>
-                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${productId}/${duration}`)} />
+                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdid}/${duration}`)} />
                 </div>
                 <Label2Tag data={["상세 정보","이용 안내"]} selectData={mode} setSelectData={setMode} />
                 {mode === "상세 정보" ? (

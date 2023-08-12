@@ -29,7 +29,7 @@ function App() {
                 <Route path={"/user/info"} element={<UserInfoPage />} />
                 <Route path={"/payment/:productId/:amount"} element={<PaymentPage />} />
                 <Route path={"/mypage"} element={<MyPage />} />
-                <Route path={"/product/:productId"} element={<StayInfoPage />} />
+                <Route path={"/product"} element={<StayInfoPage />} />
             </Routes>
         </div>
     );

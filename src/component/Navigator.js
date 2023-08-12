@@ -9,7 +9,6 @@ import styles from "./Navigator.module.css";
 
 export const Navigator = ({ mode, searchMode, setSearchMode }) => {
     const userLogin = useSelector(state => state.userLogin);
-    const dispatch = useDispatch();
     const history = useNavigate();
 
     const styleMode = {

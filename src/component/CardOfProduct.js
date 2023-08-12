@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import selectedProduct, { selectProduct } from "../store/selectedProduct";
+import { selectProduct } from "../store/selectedProduct";
 
 import { BtnTag } from "./BtnTag";
 
@@ -9,7 +9,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CardOfProduct.module.css";
 
 export const CardOfProduct = ({ src, data }) => {
-    const state = useSelector(state => state.selectedProduct);
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -20,7 +19,7 @@ export const CardOfProduct = ({ src, data }) => {
 
     const cardClickEvent = () => {
         dispatch(selectProduct({ id : data.pdid, data : data }));
-        history(`/product/${data.pdid}`);
+        history(`/product`);
     }
 
     return (

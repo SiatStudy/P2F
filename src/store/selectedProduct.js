@@ -12,11 +12,7 @@ let selectedProduct = createSlice({
             state.data = action.payload.data;
         },
         returnProduct : (state, action) => {
-            if(action.payload === state.productId) {
-                return state.data;
-            } else {
-                alert("해당 상품은 없는 제품입니다.")
-            }
+            return state.data;
         }
     }
 });

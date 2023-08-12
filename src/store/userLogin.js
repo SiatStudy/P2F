@@ -9,11 +9,11 @@ let userLogIn = createSlice({
     reducers : {
         userLogin : (state, action) => {
             state.sectionID = action.payload;
-            state.userLogin = true;
+            state.useLogin = true;
         },
         userLogout : (state, action) => {
             state.sectionID = "";
-            state.userLogin = false;
+            state.useLogin = false;
         },
         useSectionIDReturn : (state, action) => {
             return state.sectionID;
