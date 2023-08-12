@@ -27,7 +27,7 @@ function App() {
                 <Route path={"/location/:locationData"} element={<LocationPage />} />
                 <Route path={"/search/:searchData"} element={<SearchPage />} />
                 <Route path={"/user/info"} element={<UserInfoPage />} />
-                <Route path={"/payment/:productId/:amount"} element={<PaymentPage />} />
+                <Route path={"/payment/:productName/:amount"} element={<PaymentPage />} />
                 <Route path={"/mypage"} element={<MyPage />} />
                 <Route path={"/product"} element={<StayInfoPage />} />
             </Routes>

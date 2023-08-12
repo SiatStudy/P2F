@@ -38,7 +38,7 @@ export const CardOfProduct = ({ src, data }) => {
                         {data.pdprice} ~ / 1박
                     </p>
                 </div>
-                <BtnTag type={"shortBtn"} mode={"bookBtn"} event={() => history(`/payment/${data.pdid}/1`)}/>
+                <BtnTag type={"shortBtn"} mode={"bookBtn"} event={() => history(`/payment/${data.pdname}/${data.pdprice}`)}/>
             </div>
         </div>
     );
