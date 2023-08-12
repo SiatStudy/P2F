@@ -22,11 +22,10 @@ import './SwiperContent.css';
 import styles from "./StayInfoPage.module.css";
 
 export const StayInfoPage = () => {
-    const product = useSelector(state => state.selectedProduct);
+    const data = useSelector(state => state.selectedProduct.data);
     const [ startDate, setStartDate ] = useState();
     const [ endDate, setEndDate ] = useState();
     const [ mode, setMode ] = useState("상세 정보");
-    const data = useState(product.data);
     const [ duration, setDuration ] = useState();
 
     const dispatch = useDispatch();
@@ -45,6 +44,8 @@ export const StayInfoPage = () => {
     const swiperPhoto = ["img_1", "img_2", "img_3"];
 
     useEffect(() => {
+        console.log(startDate);
+        console.log(endDate);
         const timeDiff = endDate - startDate;
         setDuration(timeDiff / 86400000);
     }, [startDate, endDate])
@@ -79,10 +80,10 @@ export const StayInfoPage = () => {
                 </div>
                 <div className={styles.totalDiv}>
                     <p>총 합계 : <span>{isNaN(data.pdprice * duration) ? <span>0</span> : <span>{data.pdprice * duration}</span>}</span></p>
-                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdname}/${data.pdprice * duration}`)} />
+                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdname}/${data.pdprice}`)} />
                 </div>
                 <Label2Tag data={["상세 정보","이용 안내"]} selectData={mode} setSelectData={setMode} />
-                {mode === "상세 정보" ? (
+                { mode === "상세 정보" ? (
                     <div className={styles.contentDiv}>
                         <p className={styles.mainTitle}>#도심 속 낭만적인 휴식</p>
                         <img src={`${process.env.PUBLIC_URL}/asset/img/상세페이지/top_main_img.png`} alt={"photo"} />

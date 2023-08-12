@@ -15,7 +15,7 @@ let userLogIn = createSlice({
             state.sectionID = "";
             state.useLogin = false;
         },
-        useSectionIDReturn : (state, action) => {
+        useSectionIdReturn : (state, action) => {
             return state.sectionID;
         },
         useLoginReturn : (state, action) => {
@@ -24,5 +24,5 @@ let userLogIn = createSlice({
     }
 });
 
-export const { userLogin, userLogout, useSectionIDReturn, useLoginReturn } = userLogIn.actions;
+export const { userLogin, userLogout, useSectionIdReturn, useLoginReturn } = userLogIn.actions;
 export default userLogIn.reducer;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { product } from "../../apis/product";
@@ -12,14 +12,14 @@ import { HeaderNav } from "../../content/utilContent/HeaderNav";
 
 import {FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import {useSectionIDReturn} from "../../store/userLogin";
+import { useSectionIdReturn } from "../../store/userLogin";
 import styles from "./PaymentPage.module.css";
 
 export const PaymentPage = () => {
     const [ data, setData ] = useState();
     const [ selectedValue, setSelectedValue ] = useState("");
     const { productName, amount } = useParams();
-    const dispatch = useDispatch();
+    const sectionId = useSelector(state => state.userLogin.sectionID);
 
     // useEffect(() => {
     //     product("productInfo", productId)
@@ -58,7 +58,7 @@ export const PaymentPage = () => {
             merchant_uid : `mid_${new Date().getTime()}`,
             name: productName,
             amount: amount,
-            buyer_id: dispatch(useSectionIDReturn()),
+            buyer_id: sectionId,
             buyer_tel : "010-0000-0000",
         };
         IMP.request_pay(datas, callback);
@@ -93,16 +93,16 @@ export const PaymentPage = () => {
                 <form onSubmit={productPayment} className={styles.form}>
                     <div className={styles.formPay}>
                         <div className={styles.formPay}>
-                            <input type="radio" value="tosspay" checked={selectedValue === "toss"} onChange={handleRadioChange} />
+                            <input type="radio" value="tosspay" checked={selectedValue === "tosspay"} onChange={handleRadioChange} />
                             <label>toss</label>
-                            <input type="radio" value="naverpay" checked={selectedValue === "naver"} onChange={handleRadioChange} />
+                            <input type="radio" value="naverpay" checked={selectedValue === "naverpay"} onChange={handleRadioChange} />
                             <label>naver</label>
-                            <input type="radio" value="kakaopay" checked={selectedValue === "kakao"} onChange={handleRadioChange} />
+                            <input type="radio" value="kakaopay" checked={selectedValue === "kakaopay"} onChange={handleRadioChange} />
                             <label>kakao</label>
                         </div>
                     </div>
-                    <p className={styles.payText}>상품 금액 <span>{data.pdprice}</span></p>
-                    <p className={styles.totalPayText}>총 결제 금액 <span>{data.pdprice * amount}</span></p>
+                    <p className={styles.payText}>상품 금액 <span>{amount}</span></p>
+                    <p className={styles.totalPayText}>총 결제 금액 <span>{amount}</span></p>
                     <BtnTag type={"longBtn"} mode={"payBtn"} />
                 </form>
             </div>
