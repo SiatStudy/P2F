@@ -43,7 +43,7 @@ export const LoginContent = () => {
         if(isIDPattern(id) && isPWPattern(pw)) {
             login("login", { username : id, userpassword: pw })
                 .then(req => {
-                    dispatch(userLogin(req));
+                    dispatch(userLogin(req.userId));
                     history("/mainpage");
                 });
         } else {

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import selectedProduct from "../store/selectedProduct";
+import selectedProduct, { selectProduct } from "../store/selectedProduct";
 
 import { BtnTag } from "./BtnTag";
 
@@ -17,9 +17,9 @@ export const CardOfProduct = ({ src, data }) => {
         src: `${src}`,
         className: `${styles.stayImg}`,
     };
-W
+
     const cardClickEvent = () => {
-        dispatch(selectedProduct(state,{ id : data.pdid, data : data }));
+        dispatch(selectProduct({ id : data.pdid, data : data }));
         history(`/product/${data.pdid}`);
     }
 

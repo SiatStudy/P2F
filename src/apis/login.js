@@ -8,7 +8,7 @@ export const login = async (mode, apiData) => {
                     const res = await axios.post("/login/loginTest", data);
 
                     if(res.data) {
-                        return res.data.isValid;
+                        return res.data;
                     } else {
                         return false;
                     }

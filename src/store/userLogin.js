@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let userLogIn = createSlice({
-    name : "userLogin",
+    name : "userLogIn",
     initialState : {
         sectionID : "",
         useLogin : false
@@ -24,5 +24,5 @@ let userLogIn = createSlice({
     }
 });
 
-export const { userLogin, userLogout, userEmailAdd, userEmailReturn, useSectionReturn } = userLogIn.actions;
+export const { userLogin, userLogout, useSectionIDReturn, useLoginReturn } = userLogIn.actions;
 export default userLogIn.reducer;
