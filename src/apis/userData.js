@@ -1,18 +1,27 @@
 import axios from "axios";
 
-export const userData = (mode, apiData) => {
+export const userData = async (mode, apiData) => {
     const modeApi = {
         "userinfo" : {
-            func : (data) => {
-                axios.get(`/users?id=${data}`)
-                    .then(res => {
+            func : async (data) => {
+                try {
+                    const res = await axios.get(`/users?id=${data}`)
+
+                    if(res.data) {
                         return res.data;
-                    })
-                    .catch(err => alert("[ERROR] userInfo API error"));
+                    } else {
+                        return false;
+                    }
+                } catch {
+                    alert("[ERROR] UserInfo API Error.")
+                }
             }
         },
         "payment" : {
-            func : (data) => {
+            func : async (data) => {
+                try {
+
+                }
                 axios.post("/payment", data)
                     .then(res => {
                         if(res.data) {
@@ -29,5 +38,9 @@ export const userData = (mode, apiData) => {
         }
     }
 
-    return modeApi[mode].func(apiData);
+    try {
+        return await modeApi[mode].func(apiData);
+    } catch (error) {
+        throw error;
+    }
 }

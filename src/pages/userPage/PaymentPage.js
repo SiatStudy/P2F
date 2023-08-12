@@ -51,7 +51,7 @@ export const PaymentPage = () => {
                         </div>
                     </div>
                 </div>
-                <form action="#" className={styles.form}>
+                <form onSubmit={productPayment} className={styles.form}>
                     <div className={styles.formPay}>
                         <input type={"radio"} value={"toss"}/><label>toss</label>
                         <input type={"radio"} value={"naver"}/><label>naver</label>
@@ -59,7 +59,7 @@ export const PaymentPage = () => {
                     </div>
                     <p className={styles.payText}>상품 금액 <span>{data.pdprice}</span></p>
                     <p className={styles.totalPayText}>총 결제 금액 <span>{data.pdprice * amount}</span></p>
-                    <BtnTag type={"longBtn"} mode={"payBtn"} event={productPayment} />
+                    <BtnTag type={"longBtn"} mode={"payBtn"} />
                 </form>
             </div>
             <FooterContent />

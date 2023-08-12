@@ -8,7 +8,7 @@ export const login = async (mode, apiData) => {
                     const res = await axios.post("/login/loginTest", data);
 
                     if(res.data) {
-                        return res.data;
+                        return res.data.isValid;
                     } else {
                         return false;
                     }
@@ -20,7 +20,7 @@ export const login = async (mode, apiData) => {
         "duple": {
             func: async (data) => {
                 try {
-                    const res = await axios.post("/login/duple/id");
+                    const res = await axios.post("/login/duple/id", data);
 
                     if(res.data) {
                         return res.data;
@@ -45,11 +45,6 @@ export const login = async (mode, apiData) => {
                 } catch {
                     alert("[ERROR] SearchId API Error.");
                 }
-            }
-        },
-        "searchPw" : {
-            func : async (data) => {
-
             }
         },
         "signup" : {

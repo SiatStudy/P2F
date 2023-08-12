@@ -29,18 +29,18 @@ export const SignupContent = () => {
     const history = useNavigate();
 
     useEffect(() => {
-        if(!pwValidate && !idValidate && !emailValidate && isNickNamePattern(nickName)) {
-            setOnBtn(false);
+        if(id && pw && email && nickName) {
+            setOnBtn(false)
         } else {
             setOnBtn(true);
         }
-    }, [idValidate, emailValidate, pwValidate, nickName]);
+    }, [id, email, pw, nickName]);
 
     useEffect(() => {
         if(isPWPattern(pw) && pw !== "") {
-            setPwValidate(false);
-        } else {
             setPwValidate(true);
+        } else {
+            setPwValidate(false);
         }
     }, [pw]);
 
@@ -90,7 +90,7 @@ export const SignupContent = () => {
     const CodeFunc = (e) => {
         e.preventDefault();
 
-        login("code", { username : id, code : code })
+        login("code", { username : id, code : parseInt(code) })
             .then(res => {
                 if(res) {
                     setEmailValidate(true);

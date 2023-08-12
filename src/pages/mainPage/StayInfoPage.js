@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 
-import { product } from "../../apis/product";
 import { stayInfo } from "../../json/stayInfo";
+import { returnProduct } from "../../store/selectedProduct";
 
 import MapComponent from "../../component/MapComponent";
 import { BtnTag } from "../../component/BtnTag";
@@ -28,6 +29,7 @@ export const StayInfoPage = () => {
     const [ duration, setDuration ] = useState();
 
     const { productId } = useParams();
+    const dispatch = useDispatch();
     const history = useNavigate();
 
     const settings = {
@@ -43,10 +45,8 @@ export const StayInfoPage = () => {
     const swiperPhoto = ["img_1", "img_2", "img_3"];
 
     useEffect(() => {
-        product("productInfo", productId)
-            .then(res => {
-                setData(res.data);
-            });
+        const product = dispatch(returnProduct(productId));
+        setData(product);
     }, [productId]);
 
     useEffect(() => {
