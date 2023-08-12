@@ -1,44 +1,48 @@
 import axios from "axios";
 
-export const product = (mode, apiData) => {
+export const product = async (mode, apiData) => {
     const modeApi = {
         "location" : {
-            func : (data) => {
-                axios.get(`/main/category?category=${data}`)
-                    .then(res => {
-                        return res;
-                    })
-                    .catch(err => alert("[ERROR] categories API error"));
+            func : async (data) => {
+                try {
+                    return await axios.get(`/main/category?category=${data}`);
+                } catch {
+                    alert("[ERROR] Categories API Error.");
+                }
             }
         },
         "locate" : {
-            func : (data) => {
-                axios.get(`/main/location?location=${data}`)
-                    .then(res => {
-                        return res.data;
-                    })
-                    .catch(err => alert("[ERROR] location API error"))
+            func : async (data) => {
+                try {
+                    return await axios.get(`/main/location?location=${data}`);
+                } catch {
+                    alert("[ERROR] Location API Error.");
+                }
             }
         },
         "search" : {
-            func : (data) => {
-                axios.get(`/main/item?item=${data}`)
-                    .then(res => {
-                        return res.data;
-                    })
-                    .catch(err => alert("[ERROR] search API error"));
+            func : async (data) => {
+                try {
+                    return await axios.get(`/main/item?item=${data}`);
+                } catch {
+                    alert("[ERROR] SearchData API Error.");
+                }
             }
         },
         "productInfo" : {
-            func : (data) => {
-                axios.get(`/main/product?product=${data}`)
-                    .then(res => {
-                        return res.data;
-                    })
-                    .catch(err => alert("[ERROR] productInfo API error"));
+            func : async (data) => {
+                try {
+                    return await axios.get(`/main/product?product=${data}`)
+                } catch {
+                    alert("[ERROR] ProductData API Error.")
+                }
             }
         }
     };
 
-    return modeApi[mode].func(apiData);
+    try {
+        return await modeApi[mode].func(apiData);
+    } catch (error) {
+        throw error;
+    }
 }

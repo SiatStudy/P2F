@@ -2,100 +2,104 @@ import axios from "axios";
 
 export const login = async (mode, apiData) => {
     const modeApi = {
-        "login" : {
-            func : (data) => {
-                axios.post("/login/login", data)
-                    .then(res => {
-                        if(res.data.isValid) {
-                            return res.data.userId;
-                        } else {
-                            alert("아이디와 비밀번호가 틀렸습니다.");
-                        }
-                    })
-                    .catch(err => {
-                        alert("[ERROR] Login API error");
-                    })
+        "login": {
+            func: async (data) => {
+                try {
+                    const res = await axios.post("/login/loginTest", data);
+
+                    if(res.data) {
+                        return res.data;
+                    } else {
+                        return false;
+                    }
+                } catch {
+                    alert("[ERROR] Login API Error.");
+                }
             }
         },
-        "duple" : {
-            func : (data) => {
-                axios.post("/login/duple", { params : data })
-                    .then(res => {
-                        if(res.data) {
-                            return !res.data;
-                        }
-                    })
-                    .catch(err => {
-                        alert("[ERROR] Login Duple API error");
-                    })
+        "duple": {
+            func: async (data) => {
+                try {
+                    const res = await axios.post("/login/duple/id");
+
+                    if(res.data) {
+                        return res.data;
+                    } else {
+                        return false;
+                    }
+                } catch {
+                    alert("[ERROR] Login Duple API Error.");
+                }
             }
         },
         "searchId" : {
-            func : (data) => {
-                axios.post("/login/search/id", { params : data })
-                    .then(res => {
-                        if(res.data?.userId) {
-                            return res.data.userId;
-                        } else {
-                            throw Error("none userId");
-                        }
-                    })
-                    .catch(err => {
-                        alert("[ERROR] Login search ID API error")
-                    })
+            func : async (data) => {
+                try {
+                    const res = await axios.post("/login/search/id", data);
+
+                    if(res.data?.userId) {
+                        return res.data.userId;
+                    } else {
+                        return false;
+                    }
+                } catch {
+                    alert("[ERROR] SearchId API Error.");
+                }
             }
         },
         "searchPw" : {
-            func : (data) => {
-                axios.post("/login/search/password", { params : data })
-                    .then(res => {
-                        if(res.data?.userPw) {
-                            return res.data.userPw;
-                        }
-                    })
-                    .catch(err => {
-                        alert("[ERROR} Login search PW API error");
-                    })
+            func : async (data) => {
+
             }
         },
         "signup" : {
-            func : (data) => {
-                axios.post("/users/signup", { params : data })
-                    .then(res => {
+            func : async (data) => {
+                try {
+                    const res = await axios.post("/users/signup", data);
+
+                    if(res?.data) {
                         return res.data;
-                    })
-                    .catch(err => alert("[ERROR] SignUp API error"));
+                    }
+                } catch {
+                    alert("[ERROR] SignUp API Error.");
+                }
             }
         },
         "emailCode" : {
-            func : (data) => {
-                const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-                axios.post("/api/mail/send", {
-                        address : data.useremail,
-                        title : "Email check code",
-                        content : `회원 가입을 위한 인증 코드는 ${verificationCode} 입니다.`
-                    }, {
+            func : async (data) => {
+                try {
+                    const res = await axios.post("/api/mail/send", data, {
                         headers: {
                             'Content-Type': 'application/json'
                         }
-                    })
-                    .then(res => {
+                    });
+
+                    if(res.data) {
                         return res.data;
-                    })
-                    .catch(err => alert("[ERROR] emailCode API error"))
+                    } else {
+                        return false;
+                    }
+                } catch {
+                    alert("[ERROR] SearchPW API Error.");
+                }
             }
         },
-        // "code" : {
-        //     func : (data) => {
-        //         axios.post("/api/mail/check", { params : data })
-        //             .then(res => {
-        //                 return res.success;
-        //             })
-        //             .catch(err => alert("[ERROR] code API error"));
-        //     }
-        // }
-    }
+        "code" : {
+            func : async (data) => {
+                const res = await axios.post("/api/mail/check", data);
 
-    return modeApi[mode].func(apiData);
+                if(res.data) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            }
+        }
+    };
+
+    try {
+        return await modeApi[mode].func(apiData);
+    } catch (error) {
+        throw error;
+    }
 }

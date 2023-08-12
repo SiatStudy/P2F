@@ -45,7 +45,7 @@ export const StayInfoPage = () => {
     useEffect(() => {
         product("productInfo", productId)
             .then(res => {
-                setData(res);
+                setData(res.data);
             });
     }, [productId]);
 

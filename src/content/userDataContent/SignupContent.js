@@ -44,64 +44,80 @@ export const SignupContent = () => {
         }
     }, [pw]);
 
-    const IdDupleFunc = async () => {
-        if(isIDPattern(id)) {
-            await login("duple", { username : id })
+    const IdDupleFunc = (e) => {
+        e.preventDefault();
+
+        if (isIDPattern(id)) {
+            login("duple", { username : id })
                 .then(res => {
-                    if(res) {
+                    if (res) {
                         setIdValidate(true);
                     } else {
-                        alert("중복되는 아이디가 존재합니다.")
+                        alert("중복되는 아이디가 존재합니다.");
                         setIdValidate(false);
                     }
-                });
+                })
+                .catch (error => {
+                    console.error("Error:", error);
+                    setIdValidate(false);
+                })
         } else {
             setIdValidate(false);
         }
     }
 
-    const EmailFunc = async () => {
-        if(isEmailPattern(email)) {
-            await login("emailCode", { useremail : email })
-                .then(res => {
-                    if(res) {
-                        setCodeMode(true);
-                    } else {
-                        setCodeMode(false);
-                    }
-                })
+    const EmailFunc = (e) => {
+        e.preventDefault();
+
+        if(idValidate) {
+            if(isEmailPattern(email)) {
+                login("emailCode", { username : id, useremail : email })
+                    .then(res => {
+                        if(res) {
+                            setCodeMode(true);
+                        } else {
+                            setCodeMode(false);
+                        }
+                    })
+            } else {
+                setEmailValidate(false);
+            }
         } else {
-            setEmailValidate(false);
+            alert("아이디를 먼저 입력 후 인증해주세요.");
         }
     }
 
-    const CodeFunc = async () => {
-        await login("code", { code : code })
+    const CodeFunc = (e) => {
+        e.preventDefault();
+
+        login("code", { username : id, code : code })
             .then(res => {
                 if(res) {
                     setEmailValidate(true);
                 } else {
                     alert("이메일 코드가 올바르지 않습니다.");
                 }
-            })
+            });
     }
 
-    const signUpFunc = async () => {
-        await login("signup", { username : id, useremail : email, userpassword : pw, usernickname : nickName })
+    const signUpFunc = (e) => {
+        e.preventDefault();
+
+        login("signup", { username : id, useremail : email, userpassword : pw, usernickname : nickName })
             .then(res => {
                 if(res) {
                     alert("회원가입 완료")
                     history("/login");
                 } else {
                     alert("회원가입 실패");
-                    history("/login");
+                    history("/users/signup");
                 }
             })
     }
 
     return (
         <>
-            <form className={styles.formTag}>
+            <form onSubmit={signUpFunc} className={styles.formTag}>
                 <InputTag mode={"id"} check={true} checkType={"dupleBtn"} setValue={setId} validate={idValidate} disabled={id === ""} event={IdDupleFunc} />
                 <InputTag mode={"name"} setValue={setNickName} validate={nickName !== "" ? isNickNamePattern(nickName) : true} />
                 <InputTag mode={"pw"} setValue={setPw} validate={pwValidate} />
@@ -110,7 +126,7 @@ export const SignupContent = () => {
                 {codeMode ? (
                     <InputTag mode={"code"} check={true} checkType={"reqBtn"} setValue={setCode} disabled={code === ""} event={CodeFunc} />
                 ) : null }
-                <BtnTag type={"longBtn"} mode={"signup"} event={signUpFunc} isdisabled={onBtn} />
+                <BtnTag type={"longBtn"} mode={"signup"} isdisabled={onBtn} />
             </form>
         </>
     )

@@ -19,23 +19,22 @@ export const StayContent = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`/main/category?category=${stayTypeKey[selectData]}`)
+        product("locate", stayTypeKey[selectData])
             .then(res => {
                 const displayItem = res.data.slice(0, 3);
                 setProductData(displayItem);
                 setLoading(false);
-            })
-            .catch(err => alert("[ERROR] categories API error"));
+            });
     },[])
 
     useEffect(() => {
         setLoading(true); // 데이터 로딩 시작
-        axios.get(`/main/category?category=${stayTypeKey[selectData]}`)
+        product("locate", stayTypeKey[selectData])
             .then(res => {
                 const displayItem = res.data.slice(0, 3);
                 setProductData(displayItem);
-            })
-            .catch(err => alert("[ERROR] categories API error"));
+                setLoading(false);
+            });
     }, [selectData]);
 
     return (

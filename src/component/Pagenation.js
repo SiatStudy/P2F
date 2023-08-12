@@ -18,23 +18,20 @@ export const PaginationContent = ({ mode, selected }) => {
 
     useEffect(() => {
         if(mode === "location") {
-            axios.get(`/main/location?location=${locationKey[selected]}`)
+            product("locate", locationKey[selected])
                 .then(res => {
                     setData(res.data);
-                })
-                .catch(err => alert("[ERROR] categories API error"));
+                });
         } else if(mode === "stay") {
-            axios.get(`/main/category?category=${stayTypeKey[selected]}`)
+            product("location", stayTypeKey[selected])
                 .then(res => {
                     setData(res.data);
-                })
-                .catch(err => alert("[ERROR] categories API error"));
+                });
         } else if(mode === "search") {
-            axios.get(`/main/category?category=${selected}`)
+            product("search", selected)
                 .then(res => {
                     setData(res.data);
-                })
-                .catch(err => alert("[ERROR] categories API error"));
+                });
         }
     }, [mode, selected, data]);
 
@@ -65,9 +62,30 @@ export const PaginationContent = ({ mode, selected }) => {
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+    const getPageRange = () => {
+        const visiblePageCount = 5;
+        const pageRange = [];
+
+        if (totalPages <= visiblePageCount) {
+            return pageNumbers;
+        }
+
+        if (currentPage <= Math.ceil(visiblePageCount / 2)) {
+            return [...pageNumbers.slice(0, visiblePageCount), '...', totalPages];
+        }
+
+        if (currentPage >= totalPages - Math.floor(visiblePageCount / 2)) {
+            return [1, '...', ...pageNumbers.slice(totalPages - visiblePageCount + 1)];
+        }
+
+        const start = currentPage - Math.floor(visiblePageCount / 2);
+        const end = currentPage + Math.floor(visiblePageCount / 2);
+        return [1, '...', ...pageNumbers.slice(start - 1, end), '...', totalPages];
+    };
+
     return (
         <div className={styles.btnDiv}>
-            {pageNumbers.map((page, index) => (
+            {getPageRange().map((page, index) => (
                 <button
                     key={index}
                     onClick={() => onPageChange(page)}

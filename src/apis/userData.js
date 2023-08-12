@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const userData = async (mode, apiData) => {
+export const userData = (mode, apiData) => {
     const modeApi = {
         "userinfo" : {
             func : (data) => {
