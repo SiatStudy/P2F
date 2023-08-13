@@ -68,7 +68,7 @@ export const PaymentPage = () => {
         const { success, error_msg } = res;
 
         if(success) {
-            alert("결제 성공");
+            alert(`${productName}을 ${amount}원에 결제 성공`);
         } else {
             alert(`결제 실패 : ${error_msg}`);
         }

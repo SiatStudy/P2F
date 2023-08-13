@@ -79,7 +79,7 @@ export const StayInfoPage = () => {
                 </div>
                 <div className={styles.totalDiv}>
                     <p>총 합계 : <span>{isNaN(data.pdprice * duration) ? <span>0</span> : <span>{data.pdprice * duration}</span>}</span></p>
-                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={startDate && endDate} event={() => history(`/payment/${data.pdname}/${data.pdprice * duration}`)} />
+                    <BtnTag type={"shortBtn"} mode={"bookBtn"} isdisabled={!(startDate && endDate)} event={() => history(`/payment/${data.pdname}/${data.pdprice * duration}`)} />
                 </div>
                 <Label2Tag data={["상세 정보","이용 안내"]} selectData={mode} setSelectData={setMode} />
                 { mode === "상세 정보" ? (
